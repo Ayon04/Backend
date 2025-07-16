@@ -27,6 +27,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers();//gitt
 
 app.Run();

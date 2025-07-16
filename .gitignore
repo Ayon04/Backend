@@ -27,6 +27,7 @@ project.assets.json
 ########################################
 wwwroot/
 appsettings.json
+Program.cs
 
 ########################################
 # Rider (if using JetBrains)
