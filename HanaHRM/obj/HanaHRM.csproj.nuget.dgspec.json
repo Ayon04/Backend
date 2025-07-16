@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ayon.ghosh\\Projects\\HanaHRM\\HanaHRM\\HanaHRM.csproj": {}
+    "C:\\Users\\ayon.ghosh\\Projects\\Backend\\HanaHRM\\HanaHRM.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ayon.ghosh\\Projects\\HanaHRM\\HanaHRM\\HanaHRM.csproj": {
+    "C:\\Users\\ayon.ghosh\\Projects\\Backend\\HanaHRM\\HanaHRM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ayon.ghosh\\Projects\\HanaHRM\\HanaHRM\\HanaHRM.csproj",
+        "projectUniqueName": "C:\\Users\\ayon.ghosh\\Projects\\Backend\\HanaHRM\\HanaHRM.csproj",
         "projectName": "HanaHRM",
-        "projectPath": "C:\\Users\\ayon.ghosh\\Projects\\HanaHRM\\HanaHRM\\HanaHRM.csproj",
+        "projectPath": "C:\\Users\\ayon.ghosh\\Projects\\Backend\\HanaHRM\\HanaHRM.csproj",
         "packagesPath": "C:\\Users\\ayon.ghosh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ayon.ghosh\\Projects\\HanaHRM\\HanaHRM\\obj\\",
+        "outputPath": "C:\\Users\\ayon.ghosh\\Projects\\Backend\\HanaHRM\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
