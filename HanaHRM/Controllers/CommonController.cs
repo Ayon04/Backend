@@ -10,7 +10,7 @@ namespace HanaHRM.Controllers
         private readonly HRMDbContext _context;
 
         public CommonController(HRMDbContext context)
-        {
+        { 
             _context = context;
         }
 
