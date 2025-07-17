@@ -8,7 +8,7 @@ namespace HanaHRM.DataAccess.Models
     public class DropDown
     {
 
-        string text { set; get; }
-        string value { set; get; }
+       public string text { set; get; }
+       public  int value { set; get; }
     }
 }

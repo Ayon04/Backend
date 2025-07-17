@@ -5,10 +5,20 @@
     "version": "v1"
   },
   "paths": {
-    "/api/Common/getalleducationexaminations": {
+    "/api/Common/departmentdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -17,10 +27,20 @@
         }
       }
     },
-    "/api/Common/getalleducationresults": {
+    "/api/Common/designationdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -29,10 +49,20 @@
         }
       }
     },
-    "/api/Common/getallemployeedocuments": {
+    "/api/Common/educationexaminationsdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -41,10 +71,20 @@
         }
       }
     },
-    "/api/Common/getallemployeeeducationinfo": {
+    "/api/Common/educationresultsdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -53,10 +93,20 @@
         }
       }
     },
-    "/api/Common/getallemployeefamilyinfo": {
+    "/api/Common/employeetypesdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -65,10 +115,20 @@
         }
       }
     },
-    "/api/Common/getallemployeeprofessionalcertifications": {
+    "/api/Common/gendersdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -77,10 +137,20 @@
         }
       }
     },
-    "/api/Common/getallemployeetypes": {
+    "/api/Common/jobtypesdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -89,10 +159,20 @@
         }
       }
     },
-    "/api/Common/getallgenders": {
+    "/api/Common/maritalstatusesdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -101,10 +181,20 @@
         }
       }
     },
-    "/api/Common/getalljobtypes": {
+    "/api/Common/relationshipdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -113,10 +203,20 @@
         }
       }
     },
-    "/api/Common/getallmaritalstatuses": {
+    "/api/Common/religionsdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -125,10 +225,20 @@
         }
       }
     },
-    "/api/Common/getallrelationships": {
+    "/api/Common/sectionsdropdown": {
       "get": {
         "tags": [
           "Common"
+        ],
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -137,34 +247,20 @@
         }
       }
     },
-    "/api/Common/getallreligions": {
+    "/api/Common/weekoffsdropdown": {
       "get": {
         "tags": [
           "Common"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
+        "parameters": [
+          {
+            "name": "idClint",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
-        }
-      }
-    },
-    "/api/Common/getallsections": {
-      "get": {
-        "tags": [
-          "Common"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Common/getallweekoffs": {
-      "get": {
-        "tags": [
-          "Common"
         ],
         "responses": {
           "200": {
@@ -174,6 +270,54 @@
       }
     },
     "/api/Employee/getallemployees": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Employee/getallemployeedocuments": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Employee/getallemployeeeducationinfo": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Employee/getallemployeefamilyinfo": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Employee/getallemployeeprofessionalcertifications": {
       "get": {
         "tags": [
           "Employee"

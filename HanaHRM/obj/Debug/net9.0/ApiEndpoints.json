@@ -1,142 +1,194 @@
 [
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllEducationExaminations",
-    "RelativePath": "api/Common/getalleducationexaminations",
+    "Method": "GetDepartmentDropDown",
+    "RelativePath": "api/Common/departmentdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllEducationResults",
-    "RelativePath": "api/Common/getalleducationresults",
+    "Method": "GetDesignationDropDown",
+    "RelativePath": "api/Common/designationdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllEmployeeDocuments",
-    "RelativePath": "api/Common/getallemployeedocuments",
+    "Method": "GetEducationExaminationsDropDown",
+    "RelativePath": "api/Common/educationexaminationsdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllEmployeeEducationInfo",
-    "RelativePath": "api/Common/getallemployeeeducationinfo",
+    "Method": "GetEducationResultsDropDown",
+    "RelativePath": "api/Common/educationresultsdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllEmployeeFamilyInfo",
-    "RelativePath": "api/Common/getallemployeefamilyinfo",
+    "Method": "GetEmployeeTypesDropDown",
+    "RelativePath": "api/Common/employeetypesdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllEmployeeProfessionalCertifications",
-    "RelativePath": "api/Common/getallemployeeprofessionalcertifications",
+    "Method": "GetGendersDropDown",
+    "RelativePath": "api/Common/gendersdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllEmployeeTypes",
-    "RelativePath": "api/Common/getallemployeetypes",
+    "Method": "GetJobTypesDropDown",
+    "RelativePath": "api/Common/jobtypesdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllGenders",
-    "RelativePath": "api/Common/getallgenders",
+    "Method": "GetMaritalStatusesDropDown",
+    "RelativePath": "api/Common/maritalstatusesdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllJobTypes",
-    "RelativePath": "api/Common/getalljobtypes",
+    "Method": "GetRelationshipDropDown",
+    "RelativePath": "api/Common/relationshipdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllMaritalStatuses",
-    "RelativePath": "api/Common/getallmaritalstatuses",
+    "Method": "GetReligionsDropDown",
+    "RelativePath": "api/Common/religionsdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllRelationships",
-    "RelativePath": "api/Common/getallrelationships",
+    "Method": "GetSectionsDropDown",
+    "RelativePath": "api/Common/sectionsdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllReligions",
-    "RelativePath": "api/Common/getallreligions",
+    "Method": "GetWeekOffsDropDown",
+    "RelativePath": "api/Common/weekoffsdropdown",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllSections",
-    "RelativePath": "api/Common/getallsections",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HanaHRM.Controllers.CommonController",
-    "Method": "GetAllWeekOffs",
-    "RelativePath": "api/Common/getallweekoffs",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idClint",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -195,6 +247,46 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HanaHRM.Controllers.EmployeeController",
+    "Method": "GetAllEmployeeDocuments",
+    "RelativePath": "api/Employee/getallemployeedocuments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HanaHRM.Controllers.EmployeeController",
+    "Method": "GetAllEmployeeEducationInfo",
+    "RelativePath": "api/Employee/getallemployeeeducationinfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HanaHRM.Controllers.EmployeeController",
+    "Method": "GetAllEmployeeFamilyInfo",
+    "RelativePath": "api/Employee/getallemployeefamilyinfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HanaHRM.Controllers.EmployeeController",
+    "Method": "GetAllEmployeeProfessionalCertifications",
+    "RelativePath": "api/Employee/getallemployeeprofessionalcertifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
