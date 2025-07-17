@@ -1,5 +1,6 @@
 ﻿using HanaHRM.DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HanaHRM.Controllers
 {
@@ -14,119 +15,91 @@ namespace HanaHRM.Controllers
             _context = context;
         }
 
-        [HttpGet("getalleducationexaminations")]
-        public IActionResult GetAllEducationExaminations()
+        [HttpGet("getalldepartments")]
+        public async Task<IActionResult> GetAllDepartments()
         {
-            var data = _context.EducationExaminations.ToList();
+            var data = await _context.Departments.ToListAsync();
+            return Ok(data);
+        }
+
+        [HttpGet("getalldesignations")]
+        public async Task<IActionResult> GetAllDesignations()
+        {
+            var data = await _context.Designations.ToListAsync();
+            return Ok(data);
+        }
+
+
+        [HttpGet("getalleducationexaminations")]
+        public async Task<IActionResult> GetAllEducationExaminations()
+        {
+            var data = await _context.EducationExaminations.ToListAsync();
             return Ok(data);
         }
 
         [HttpGet("getalleducationresults")]
-        public IActionResult GetAllEducationResults()
+        public async Task<IActionResult> GetAllEducationResults()
         {
-            var data = _context.EducationResults.ToList();
+            var data = await _context.EducationResults.ToListAsync();
             return Ok(data);
         }
-
-        [HttpGet("getallemployees")]
-        public IActionResult GetAllEmployees()
-        {
-            var data = _context.Employees.Where(e=>e.IsActive == true).ToList();
-            return Ok(data);
-        }
-
-        [HttpGet("getemployeebyid/{id}")]
-        public IActionResult GetEmployeeById(int id)
-        {
-            var data = _context.Employees.FirstOrDefault(e => e.Id == id);
-
-            return Ok(data);
-        }
-
-        [HttpGet("getallemployeedocuments")]
-        public IActionResult GetAllEmployeeDocuments()
-        {
-            var data = _context.EmployeeDocuments.ToList();
-            return Ok(data);
-        }
-
-        [HttpGet("getallemployeeeducationinfo")]
-        public IActionResult GetAllEmployeeEducationInfo()
-        {
-            var data = _context.EmployeeEducationInfos.ToList();
-            return Ok(data);
-        }
-
-        [HttpGet("getallemployeefamilyinfo")]
-        public IActionResult GetAllEmployeeFamilyInfo()
-        {
-            var data = _context.EmployeeFamilyInfos.ToList();
-            return Ok(data);
-        }
-
-        [HttpGet("getallemployeeprofessionalcertifications")]
-        public IActionResult GetAllEmployeeProfessionalCertifications()
-        {
-            var data = _context.EmployeeProfessionalCertifications.ToList();
-            return Ok(data);
-        }
+    
 
         [HttpGet("getallemployeetypes")]
-        public IActionResult GetAllEmployeeTypes()
+        public async Task<IActionResult> GetAllEmployeeTypes()
         {
-            var data = _context.EmployeeTypes.ToList();
+            var data = await _context.EmployeeTypes.ToListAsync();
             return Ok(data);
         }
 
         [HttpGet("getallgenders")]
-        public IActionResult GetAllGenders()
+        public async Task<IActionResult> GetAllGenders()
         {
-            var data = _context.Genders.ToList();
+            var data = await _context.Genders.ToListAsync();
             return Ok(data);
         }
 
         [HttpGet("getalljobtypes")]
-        public IActionResult GetAllJobTypes()
+        public async Task<IActionResult> GetAllJobTypes()
         {
-            var data = _context.JobTypes.ToList();
+            var data = await _context.JobTypes.ToListAsync();
             return Ok(data);
         }
 
         [HttpGet("getallmaritalstatuses")]
-        public IActionResult GetAllMaritalStatuses()
+        public async Task<IActionResult> GetAllMaritalStatuses()
         {
-            var data = _context.MaritalStatuses.ToList();
+            var data = await _context.MaritalStatuses.ToListAsync();
             return Ok(data);
         }
 
         [HttpGet("getallrelationships")]
-        public IActionResult GetAllRelationships()
+        public async Task<IActionResult> GetAllRelationships()
         {
-            var data = _context.Relationships.ToList();
+            var data =await _context.Relationships.ToListAsync();
             return Ok(data);
         }
 
         [HttpGet("getallreligions")]
-        public IActionResult GetAllReligions()
+        public async Task<IActionResult> GetAllReligions()
         {
-            var data = _context.Religions.ToList();
+            var data = await _context.Religions.ToListAsync();
             return Ok(data);
         }
 
         [HttpGet("getallsections")]
-        public IActionResult GetAllSections()
+        public async Task<IActionResult> GetAllSections()
         {
-            var data = _context.Sections.ToList();
+            var data = await _context.Sections.ToListAsync();
             return Ok(data);
         }
 
         [HttpGet("getallweekoffs")]
-        public IActionResult GetAllWeekOffs()
+        public async Task<IActionResult> GetAllWeekOffs()
         {
-            var data = _context.WeekOffs.ToList();
+            var data = await _context.WeekOffs.ToListAsync();
             return Ok(data);
         }
-
 
     }
 }

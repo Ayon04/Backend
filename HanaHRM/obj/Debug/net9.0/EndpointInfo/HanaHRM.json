@@ -29,41 +29,6 @@
         }
       }
     },
-    "/api/Common/getallemployees": {
-      "get": {
-        "tags": [
-          "Common"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Common/getemployeebyid/{id}": {
-      "get": {
-        "tags": [
-          "Common"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Common/getallemployeedocuments": {
       "get": {
         "tags": [
@@ -208,6 +173,41 @@
         }
       }
     },
+    "/api/Employee/getallemployees": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Employee/getemployeebyid/{id}": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Employee/createemployee": {
       "post": {
         "tags": [
@@ -302,30 +302,31 @@
         }
       }
     },
-    "/api/Employee/deleteemployee": {
+    "/api/Employee/deleteemployee/{idClient}/{id}": {
       "patch": {
         "tags": [
           "Employee"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Employee"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Employee"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Employee"
-              }
+        "parameters": [
+          {
+            "name": "idClient",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK"

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HanaHRM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85af132a4d252d38dfdb4f81b06000788d2bb56a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3216a310928121580c9f7159df2e5b326ad6fd1d")]
 [assembly: System.Reflection.AssemblyProductAttribute("HanaHRM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HanaHRM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

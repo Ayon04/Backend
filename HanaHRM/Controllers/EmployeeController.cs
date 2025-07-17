@@ -16,16 +16,58 @@ namespace HanaHRM.Controllers
             _context = context;
         }
 
+        [HttpGet("getallemployees")]
+        public IActionResult GetAllEmployees()
+        {
+            var data = _context.Employees.Where(e => e.IsActive == true).ToList();
+            return Ok(data);
+        }
+
+        [HttpGet("getallemployeedocuments")]
+        public IActionResult GetAllEmployeeDocuments()
+        {
+            var data = _context.EmployeeDocuments.ToList();
+            return Ok(data);
+        }
+        [HttpGet("getallemployeeeducationinfo")]
+        public IActionResult GetAllEmployeeEducationInfo()
+        {
+            var data = _context.EmployeeEducationInfos.ToList();
+            return Ok(data);
+        }
+        [HttpGet("getallemployeefamilyinfo")]
+        public IActionResult GetAllEmployeeFamilyInfo()
+        {
+            var data = _context.EmployeeFamilyInfos.ToList();
+            return Ok(data);
+        }
+
+        [HttpGet("getallemployeeprofessionalcertifications")]
+        public IActionResult GetAllEmployeeProfessionalCertifications()
+        {
+            var data = _context.EmployeeProfessionalCertifications.ToList();
+            return Ok(data);
+        }
+
+
+        [HttpGet("getemployeebyid/{id}")]
+        public IActionResult GetEmployeeById(int id)
+        {
+            var data = _context.Employees.FirstOrDefault(e => e.Id == id);
+
+            return Ok(data);
+        }
+
         [HttpPost("createemployee")]
         public IActionResult CreateEmployee([FromBody] Employee emp)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             emp.SetDate = DateTime.Now;
             _context.Employees.Add(emp);
             _context.SaveChanges();
-        
+
 
             return Ok(new { message = "Employee created successfully!", emp.Id });
         }
@@ -61,9 +103,9 @@ namespace HanaHRM.Controllers
         }
 
         [HttpDelete("deleteemployeeparmanent/{idClient}/{id}")]
-         public IActionResult DeleteEmployee(int idClient, int id)
-         {
-             var empToDelete = _context.Employees.Find(idClient, id);
+        public IActionResult DeleteEmployee(int idClient, int id)
+        {
+            var empToDelete = _context.Employees.FirstOrDefault(e => e.IdClient == idClient && e.Id == id);
 
             if (empToDelete == null)
             {
@@ -71,19 +113,17 @@ namespace HanaHRM.Controllers
             }
 
             _context.Employees.Remove(empToDelete);
-             _context.SaveChanges();
+            _context.SaveChanges();
 
-             return Ok(new { message = "Data deleted successfully" });
-         }
+            return Ok(new { message = "Data deleted successfully" });
+        }
 
         //Soft Delete using boolian flag (IsActive)
-
-        [HttpPatch("deleteemployee")]
-        public IActionResult HideEmployee([FromBody] Employee emp)
+        [HttpPatch("deleteemployee/{idClient}/{id}")]
+        public IActionResult HideEmployee(int idClient, int id)
         {
-            var empToHide = _context.Employees.Find(emp.IdClient, emp.Id);
-
-            if (empToHide.Id != emp.Id || empToHide == null)
+            var empToHide = _context.Employees.FirstOrDefault(e => e.IdClient == idClient && e.Id == id);
+            if (empToHide == null)
             {
                 return NotFound(new { error = "Employee not found!" });
             }
