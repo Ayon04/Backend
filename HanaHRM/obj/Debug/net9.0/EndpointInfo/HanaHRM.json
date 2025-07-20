@@ -413,7 +413,7 @@
         }
       }
     },
-    "/api/employee/deleteemployeeparmanent/{idClient}/{id}": {
+    "/api/employee/deleteemployee/{idClient}/{id}": {
       "delete": {
         "tags": [
           "Employee"
@@ -443,9 +443,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/employee/deleteemployee/{idClient}/{id}": {
+      },
       "patch": {
         "tags": [
           "Employee"

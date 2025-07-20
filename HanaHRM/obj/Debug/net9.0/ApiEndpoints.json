@@ -209,9 +209,9 @@
   },
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
-    "Method": "HideEmployee",
+    "Method": "DeleteEmployee",
     "RelativePath": "api/employee/deleteemployee/{idClient}/{id}",
-    "HttpMethod": "PATCH",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -230,9 +230,9 @@
   },
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
-    "Method": "DeleteEmployee",
-    "RelativePath": "api/employee/deleteemployeeparmanent/{idClient}/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "HideEmployee",
+    "RelativePath": "api/employee/deleteemployee/{idClient}/{id}",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [

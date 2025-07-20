@@ -66,10 +66,9 @@ namespace HanaHRM.Controllers
         public async Task<IActionResult> CreateEmployee([FromBody] Employee emp, CancellationToken ct)
         {
           
-             emp.SetDate = DateTime.Now;
-             await _context.Employees.AddAsync(emp, ct);
-             await _context.SaveChangesAsync(ct);
-
+            emp.SetDate = DateTime.Now;
+            await _context.Employees.AddAsync(emp, ct);
+            await _context.SaveChangesAsync(ct);
 
             return Ok(new { message = "Employee created successfully!", emp.Id });
         }
@@ -78,7 +77,12 @@ namespace HanaHRM.Controllers
         [HttpPut("updateemployee")]
         public async Task<IActionResult> EditEmployee([FromBody] Employee emp, CancellationToken ct)
         {
-            var currentEmp = await _context.Employees.FirstOrDefaultAsync(e=>e.IdClient == emp.IdClient && e.Id== emp.Id,ct );
+            var currentEmp = await _context.Employees.
+                Include(e=>e.EmployeeDocuments.Where(e => e.IdClient == emp.IdClient && e.Id == emp.Id)).
+                Include(e=>e.EmployeeEducationInfos.Where(e => e.IdClient == emp.IdClient && e.Id == emp.Id)).
+                Include(e=>e.EmployeeProfessionalCertifications.Where(e => e.IdClient == emp.IdClient && e.Id == emp.Id)).
+               
+                FirstOrDefaultAsync(e=>e.IdClient == emp.IdClient && e.Id== emp.Id,ct );
 
             if ( currentEmp == null)
             {
@@ -104,7 +108,7 @@ namespace HanaHRM.Controllers
             return Ok(new { message = "Data Updated successfully" });
         }
 
-        [HttpDelete("deleteemployeeparmanent/{idClient}/{id}")]
+        [HttpDelete("deleteemployee/{idClient}/{id}")]
         public async Task<IActionResult> DeleteEmployee(int idClient, int id ,CancellationToken ct)
         {
             var empToDelete =await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id,ct);
