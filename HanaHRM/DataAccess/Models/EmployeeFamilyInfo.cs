@@ -48,5 +48,7 @@ public partial class EmployeeFamilyInfo
 
     [ForeignKey("IdClient, IdRelationship")]
     [InverseProperty("EmployeeFamilyInfos")]
-    public virtual Relationship Relationship { get; set; } = null!;
+    //public virtual Relationship Relationship { get; set; } = null!;
+    public virtual Relationship ? Relationship { get; set; }
+
 }

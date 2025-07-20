@@ -69,5 +69,6 @@ public partial class EmployeeEducationInfo
 
     [ForeignKey("IdClient, IdEmployee")]
     [InverseProperty("EmployeeEducationInfos")]
-    public virtual Employee Employee { get; set; } = null!;
+    //public virtual Employee Employee { get; set; } = null!;
+    public virtual Employee ? Employee { get; set; }
 }

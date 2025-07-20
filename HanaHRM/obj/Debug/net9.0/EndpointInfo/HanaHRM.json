@@ -269,7 +269,7 @@
         }
       }
     },
-    "/api/Employee/getallemployees": {
+    "/api/employee/getallemployees": {
       "get": {
         "tags": [
           "Employee"
@@ -281,7 +281,7 @@
         }
       }
     },
-    "/api/Employee/getallemployeedocuments": {
+    "/api/employee/getallemployeedocuments": {
       "get": {
         "tags": [
           "Employee"
@@ -293,7 +293,7 @@
         }
       }
     },
-    "/api/Employee/getallemployeeeducationinfo": {
+    "/api/employee/getallemployeeeducationinfo": {
       "get": {
         "tags": [
           "Employee"
@@ -305,7 +305,7 @@
         }
       }
     },
-    "/api/Employee/getallemployeefamilyinfo": {
+    "/api/employee/getallemployeefamilyinfo": {
       "get": {
         "tags": [
           "Employee"
@@ -317,7 +317,7 @@
         }
       }
     },
-    "/api/Employee/getallemployeeprofessionalcertifications": {
+    "/api/employee/getallemployeeprofessionalcertifications": {
       "get": {
         "tags": [
           "Employee"
@@ -329,7 +329,7 @@
         }
       }
     },
-    "/api/Employee/getemployeebyid/{id}": {
+    "/api/employee/getemployeebyid": {
       "get": {
         "tags": [
           "Employee"
@@ -337,8 +337,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -352,7 +351,7 @@
         }
       }
     },
-    "/api/Employee/createemployee": {
+    "/api/employee/createemployee": {
       "post": {
         "tags": [
           "Employee"
@@ -383,7 +382,7 @@
         }
       }
     },
-    "/api/Employee/updateemployee": {
+    "/api/employee/updateemployee": {
       "put": {
         "tags": [
           "Employee"
@@ -414,7 +413,7 @@
         }
       }
     },
-    "/api/Employee/deleteemployeeparmanent/{idClient}/{id}": {
+    "/api/employee/deleteemployeeparmanent/{idClient}/{id}": {
       "delete": {
         "tags": [
           "Employee"
@@ -446,7 +445,7 @@
         }
       }
     },
-    "/api/Employee/deleteemployee/{idClient}/{id}": {
+    "/api/employee/deleteemployee/{idClient}/{id}": {
       "patch": {
         "tags": [
           "Employee"

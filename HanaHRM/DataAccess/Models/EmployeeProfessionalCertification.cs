@@ -39,5 +39,8 @@ public partial class EmployeeProfessionalCertification
 
     [ForeignKey("IdClient, IdEmployee")]
     [InverseProperty("EmployeeProfessionalCertifications")]
-    public virtual Employee Employee { get; set; } = null!;
+    //public virtual Employee Employee { get; set; } = null!;
+    public virtual Employee ? Employee { get; set; }
+
+
 }

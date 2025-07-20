@@ -11,6 +11,7 @@ public partial class HRMDbContext : DbContext
     }
 
     public HRMDbContext(DbContextOptions<HRMDbContext> options)
+     
         : base(options)
     {
     }

@@ -39,5 +39,6 @@ public partial class EmployeeDocument
 
     [ForeignKey("IdClient, IdEmployee")]
     [InverseProperty("EmployeeDocuments")]
-    public virtual Employee Employee { get; set; } = null!;
+    //public virtual Employee Employee { get; set; } = null!;
+    public virtual Employee ? Employee { get; set; }
 }

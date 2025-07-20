@@ -17,7 +17,7 @@ public partial class EducationExamination
     public int Id { get; set; }
 
     [StringLength(250)]
-    public string ExamName { get; set; } = null!;
+    public string ? ExamName { get; set; } = null!;
 
     public int IdEducationLevel { get; set; }
 
@@ -30,7 +30,10 @@ public partial class EducationExamination
 
     [ForeignKey("IdClient, IdEducationLevel")]
     [InverseProperty("EducationExaminations")]
-    public virtual EducationLevel EducationLevel { get; set; } = null!;
+    // public virtual EducationLevel EducationLevel { get; set; } = null!;
+    public virtual EducationLevel ? EducationLevel { get; set; }
+
+
 
     [InverseProperty("EducationExamination")]
     public virtual ICollection<EmployeeEducationInfo> EmployeeEducationInfos { get; set; } = new List<EmployeeEducationInfo>();

@@ -194,7 +194,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "CreateEmployee",
-    "RelativePath": "api/Employee/createemployee",
+    "RelativePath": "api/employee/createemployee",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -210,7 +210,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "HideEmployee",
-    "RelativePath": "api/Employee/deleteemployee/{idClient}/{id}",
+    "RelativePath": "api/employee/deleteemployee/{idClient}/{id}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -231,7 +231,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "DeleteEmployee",
-    "RelativePath": "api/Employee/deleteemployeeparmanent/{idClient}/{id}",
+    "RelativePath": "api/employee/deleteemployeeparmanent/{idClient}/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -252,7 +252,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetAllEmployeeDocuments",
-    "RelativePath": "api/Employee/getallemployeedocuments",
+    "RelativePath": "api/employee/getallemployeedocuments",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -262,7 +262,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetAllEmployeeEducationInfo",
-    "RelativePath": "api/Employee/getallemployeeeducationinfo",
+    "RelativePath": "api/employee/getallemployeeeducationinfo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -272,7 +272,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetAllEmployeeFamilyInfo",
-    "RelativePath": "api/Employee/getallemployeefamilyinfo",
+    "RelativePath": "api/employee/getallemployeefamilyinfo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -282,7 +282,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetAllEmployeeProfessionalCertifications",
-    "RelativePath": "api/Employee/getallemployeeprofessionalcertifications",
+    "RelativePath": "api/employee/getallemployeeprofessionalcertifications",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -292,7 +292,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetAllEmployees",
-    "RelativePath": "api/Employee/getallemployees",
+    "RelativePath": "api/employee/getallemployees",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -302,7 +302,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetEmployeeById",
-    "RelativePath": "api/Employee/getemployeebyid/{id}",
+    "RelativePath": "api/employee/getemployeebyid",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -310,7 +310,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -318,7 +318,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "EditEmployee",
-    "RelativePath": "api/Employee/updateemployee",
+    "RelativePath": "api/employee/updateemployee",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

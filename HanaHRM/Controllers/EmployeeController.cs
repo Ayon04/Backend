@@ -1,11 +1,13 @@
 ﻿using HanaHRM.DataAccess.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net.Sockets;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HanaHRM.Controllers
 {
-    [Route("api/Employee")]
+    [Route("api/employee")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -16,57 +18,57 @@ namespace HanaHRM.Controllers
             _context = context;
         }
 
+        int clientId = 10001001;
         [HttpGet("getallemployees")]
-        public IActionResult GetAllEmployees()
+        public async Task<IActionResult> GetAllEmployees(CancellationToken ct)
         {
-            var data = _context.Employees.Where(e => e.IsActive == true).ToList();
+            
+            var data = await _context.Employees.Where(e => e.IsActive == true && e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
 
         [HttpGet("getallemployeedocuments")]
-        public IActionResult GetAllEmployeeDocuments()
+        public async Task<IActionResult> GetAllEmployeeDocuments(CancellationToken ct)
         {
-            var data = _context.EmployeeDocuments.ToList();
+            var data = await _context.EmployeeDocuments.Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
         [HttpGet("getallemployeeeducationinfo")]
-        public IActionResult GetAllEmployeeEducationInfo()
+        public async Task<IActionResult> GetAllEmployeeEducationInfo(CancellationToken ct)
         {
-            var data = _context.EmployeeEducationInfos.ToList();
+            var data = await _context.EmployeeEducationInfos.Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
         [HttpGet("getallemployeefamilyinfo")]
-        public IActionResult GetAllEmployeeFamilyInfo()
+        public async Task<IActionResult> GetAllEmployeeFamilyInfo(CancellationToken ct)
         {
-            var data = _context.EmployeeFamilyInfos.ToList();
+            var data = await _context.EmployeeFamilyInfos.Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
 
         [HttpGet("getallemployeeprofessionalcertifications")]
-        public IActionResult GetAllEmployeeProfessionalCertifications()
+        public async Task<IActionResult> GetAllEmployeeProfessionalCertifications(CancellationToken ct)
         {
-            var data = _context.EmployeeProfessionalCertifications.ToList();
+            var data = await _context.EmployeeProfessionalCertifications.Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
 
 
-        [HttpGet("getemployeebyid/{id}")]
-        public IActionResult GetEmployeeById(int id)
+        [HttpGet("getemployeebyid")]
+        public async Task<IActionResult> GetEmployeeById(int id, CancellationToken ct)
         {
-            var data = _context.Employees.FirstOrDefault(e => e.Id == id);
+            var data = await  _context.Employees.Where(e => e.IdClient == clientId).FirstOrDefaultAsync(e => e.Id == id, ct);
 
             return Ok(data);
         }
 
         [HttpPost("createemployee")]
-        public IActionResult CreateEmployee([FromBody] Employee emp)
+        public async Task<IActionResult> CreateEmployee([FromBody] Employee emp, CancellationToken ct)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            emp.SetDate = DateTime.Now;
-            _context.Employees.Add(emp);
-            _context.SaveChanges();
+          
+             emp.SetDate = DateTime.Now;
+             await _context.Employees.AddAsync(emp, ct);
+             await _context.SaveChangesAsync(ct);
 
 
             return Ok(new { message = "Employee created successfully!", emp.Id });
@@ -74,11 +76,11 @@ namespace HanaHRM.Controllers
 
 
         [HttpPut("updateemployee")]
-        public IActionResult EditEmployee([FromBody] Employee emp)
+        public async Task<IActionResult> EditEmployee([FromBody] Employee emp, CancellationToken ct)
         {
-            var currentEmp = _context.Employees.Find(emp.IdClient, emp.Id);
+            var currentEmp = await _context.Employees.FirstOrDefaultAsync(e=>e.IdClient == emp.IdClient && e.Id== emp.Id,ct );
 
-            if (currentEmp.Id != emp.Id || currentEmp == null)
+            if ( currentEmp == null)
             {
                 return NotFound(new { error = "Employee not found!" });
             }
@@ -97,15 +99,15 @@ namespace HanaHRM.Controllers
             currentEmp.NationalIdentificationNumber = emp.NationalIdentificationNumber;
             currentEmp.ContactNo = emp.ContactNo;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync(ct);
 
             return Ok(new { message = "Data Updated successfully" });
         }
 
         [HttpDelete("deleteemployeeparmanent/{idClient}/{id}")]
-        public IActionResult DeleteEmployee(int idClient, int id)
+        public async Task<IActionResult> DeleteEmployee(int idClient, int id ,CancellationToken ct)
         {
-            var empToDelete = _context.Employees.FirstOrDefault(e => e.IdClient == idClient && e.Id == id);
+            var empToDelete =await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id,ct);
 
             if (empToDelete == null)
             {
@@ -120,9 +122,9 @@ namespace HanaHRM.Controllers
 
         //Soft Delete using boolian flag (IsActive)
         [HttpPatch("deleteemployee/{idClient}/{id}")]
-        public IActionResult HideEmployee(int idClient, int id)
+        public async Task<IActionResult> HideEmployee(int idClient, int id,CancellationToken ct)
         {
-            var empToHide = _context.Employees.FirstOrDefault(e => e.IdClient == idClient && e.Id == id);
+            var empToHide = await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id, ct);
             if (empToHide == null)
             {
                 return NotFound(new { error = "Employee not found!" });

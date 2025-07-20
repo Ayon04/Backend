@@ -17,7 +17,9 @@ public partial class EducationLevel
     public int Id { get; set; }
 
     [StringLength(50)]
-    public string EducationLevelName { get; set; } = null!;
+    //public string EducationLevelName { get; set; } = null!;
+
+    public string ? EducationLevelName { get; set; }
 
     [StringLength(250)]
     public string? Description { get; set; }
