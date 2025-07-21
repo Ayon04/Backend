@@ -30,9 +30,9 @@
         public DateTime SetDate { get; set; }
         public string CreatedBy { get; set; }
 
-        public List<EmployeeDocumentDTO> a { get; set; }
-        public List<EmployeeEducationInfoDTO> b { get; set; }
-        public List<EmployeeProfessionalCertificationDTO> c { get; set; }
+        public List<EmployeeDocumentDTO> EmployeeDocumentDTO  { get; set; }
+        public List<EmployeeEducationInfoDTO> EmployeeEducationInfoDTO { get; set; }
+        public List<EmployeeProfessionalCertificationDTO> EmployeeProfessionalCertificationDTO { get; set; }
 
     }
 

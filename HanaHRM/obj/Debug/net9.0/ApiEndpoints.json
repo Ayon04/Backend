@@ -198,18 +198,7 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "idClient",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "idEmp",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
