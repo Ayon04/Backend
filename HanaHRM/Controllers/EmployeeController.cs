@@ -95,8 +95,8 @@ namespace HanaHRM.Controllers
                 ContactNo = ed.ContactNo ?? "",
                 IdMaritalStatus = ed.IdMaritalStatus ?? null,
                 CreatedBy = ed.CreatedBy ?? "",
-               /* ReligionName = ed.Religion.ReligionName ?? "None",*/
-                EmployeeDocumentDTO = ed.EmployeeDocuments.Select(d => new EmployeeDocumentDTO
+                /* ReligionName = ed.Religion.ReligionName ?? "None",*/
+                EmployeeDocuments = ed.EmployeeDocuments.Select(d => new EmployeeDocumentDTO
                 {
                     IdClient = d.IdClient,
                     Id = d.Id,
@@ -109,7 +109,7 @@ namespace HanaHRM.Controllers
                     CreatedBy = d.CreatedBy ?? "",
                 }).ToList(),
 
-                EmployeeEducationInfoDTO = ed.EmployeeEducationInfos.Select(edu => new EmployeeEducationInfoDTO
+                EmployeeEducationInfos = ed.EmployeeEducationInfos.Select(edu => new EmployeeEducationInfoDTO
                 {
                     IdClient = edu.IdClient,
                     Id = edu.Id,
@@ -133,7 +133,7 @@ namespace HanaHRM.Controllers
                     ResultName = edu.EducationResult?.ResultName ?? "",
                 }).ToList(),
 
-                EmployeeProfessionalCertificationDTO = ed.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertificationDTO
+                EmployeeProfessionalCertifications = ed.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertificationDTO
                 {
                     IdClient = cert.IdClient,
                     Id = cert.Id,
@@ -161,17 +161,96 @@ namespace HanaHRM.Controllers
             return Ok(data);
         }
 
-
+ 
         [HttpPost("createemployee")]
-        public async Task<IActionResult> CreateEmployee([FromBody] Employee emp, CancellationToken ct)
+        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDTO empDto, CancellationToken ct)
         {
-          
-            emp.SetDate = DateTime.Now;
+            var emp = new Employee
+            {
+                EmployeeName = empDto.EmployeeName ,
+                EmployeeNameBangla = empDto.EmployeeNameBangla,
+                FatherName = empDto.FatherName,
+                MotherName = empDto.MotherName,
+                IdDepartment = empDto.IdDepartment,
+                IdSection = empDto.IdSection,
+                IdDesignation = empDto.IdDesignation,
+                IdGender = empDto.IdGender,
+                IdReligion = empDto.IdReligion,
+                IdJobType = empDto.IdJobType,
+                IdEmployeeType = empDto.IdEmployeeType,
+                IdMaritalStatus = empDto.IdMaritalStatus,
+                IdWeekOff = empDto.IdWeekOff,
+                HasOvertime = empDto.HasOvertime,
+                HasAttendenceBonus = empDto.HasAttendenceBonus,
+                Address = empDto.Address,
+                PresentAddress = empDto.PresentAddress,
+                NationalIdentificationNumber = empDto.NationalIdentificationNumber,
+                ContactNo = empDto.ContactNo,
+                JoiningDate = empDto.JoiningDate,
+                BirthDate = empDto.BirthDate,
+                CreatedBy = empDto.CreatedBy ?? "system",
+                SetDate = DateTime.Now,
+
+                EmployeeEducationInfos = empDto.EmployeeEducationInfos.Select(edu => new EmployeeEducationInfo
+                {
+                    IdClient = edu.IdClient,
+                    IdEducationLevel = edu.IdEducationLevel,
+                    IdEducationExamination = edu.IdEducationExamination,
+                    IdEducationResult = edu.IdEducationResult,
+                    Cgpa = edu.Cgpa,
+                    ExamScale = edu.ExamScale,
+                    Marks = edu.Marks,
+                    Major = edu.Major,
+                    PassingYear = edu.PassingYear,
+                    InstituteName = edu.InstituteName,
+                    IsForeignInstitute = edu.IsForeignInstitute,
+                    Duration = edu.Duration ?? default,
+                    Achievement = edu.Achievement,
+                    CreatedBy = edu.CreatedBy ?? "system",
+                    SetDate = DateTime.Now
+                }).ToList() ?? new List<EmployeeEducationInfo>(),
+
+                EmployeeDocuments = empDto.EmployeeDocuments.Select(doc => new EmployeeDocument
+                {
+                    IdClient = doc.IdClient,
+                    DocumentName = doc.DocumentName,
+                    FileName = doc.FileName,
+                    UploadedFileExtention = doc.UploadedFileExtention,
+                    UploadDate = DateTime.Now,
+                    CreatedBy = doc.CreatedBy ?? "system",
+                    SetDate = DateTime.Now
+                }).ToList() ?? new List<EmployeeDocument>(),
+
+                EmployeeProfessionalCertifications = empDto.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertification
+                {
+                    IdClient = cert.IdClient,
+                    CertificationTitle = cert.CertificationTitle,
+                    CertificationInstitute = cert.CertificationInstitute,
+                    InstituteLocation = cert.InstituteLocation,
+                    FromDate = cert.FromDate,
+                    ToDate = cert.ToDate,
+                    CreatedBy = cert.CreatedBy ?? "ayon",
+                    SetDate = DateTime.Now
+                }).ToList() ?? new List<EmployeeProfessionalCertification>()
+            };
+
             await _context.Employees.AddAsync(emp, ct);
             await _context.SaveChangesAsync(ct);
 
             return Ok(new { message = "Employee created successfully!", emp.Id });
         }
+
+ /*      [HttpPost("createemployee")]
+        public async Task<IActionResult> CreateEmployee([FromBody] Employee emp, CancellationToken ct)
+        {
+
+            emp.SetDate = DateTime.Now;
+            await _context.Employees.AddAsync(emp, ct);
+            await _context.SaveChangesAsync(ct);
+
+            return Ok(new { message = "Employee created successfully!", emp.Id });
+        }*/
+
 
         [HttpPut("updateemployee")]
         public async Task<IActionResult> EditEmployee([FromBody] Employee emp, CancellationToken ct)

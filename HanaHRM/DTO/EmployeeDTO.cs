@@ -1,11 +1,13 @@
-﻿namespace HanaHRM.DTO
+﻿using System.Text.Json.Serialization;
+
+namespace HanaHRM.DTO
 {
     public class EmployeeDTO
     {
         public int Id { get; set; }
-        public string EmployeeName { get; set; }
-        public string EmployeeNameBangla { get; set; }
-        public string EmployeeImage { get; set; }
+        public string ? EmployeeName { get; set; }
+        public string ? EmployeeNameBangla { get; set; }
+        public byte[]? EmployeeImage { get; set; }
         public string FatherName { get; set; }
         public string MotherName { get; set; }
         public int? IdReportingManager { get; set; }
@@ -15,8 +17,8 @@
         public DateTime? JoiningDate { get; set; }
         public int? IdGender { get; set; }
         public int? IdReligion { get; set; }
-        public int? IdDepartment { get; set; }
-        public int? IdSection { get; set; }
+        public int IdDepartment { get; set; }
+        public int IdSection { get; set; }
         public int? IdDesignation { get; set; }
         public bool HasOvertime { get; set; }
         public bool HasAttendenceBonus { get; set; }
@@ -30,9 +32,14 @@
         public DateTime SetDate { get; set; }
         public string CreatedBy { get; set; }
 
-        public List<EmployeeDocumentDTO> EmployeeDocumentDTO  { get; set; }
-        public List<EmployeeEducationInfoDTO> EmployeeEducationInfoDTO { get; set; }
-        public List<EmployeeProfessionalCertificationDTO> EmployeeProfessionalCertificationDTO { get; set; }
+        [JsonPropertyName("employeeDocuments")]
+        public List<EmployeeDocumentDTO> EmployeeDocuments { get; set; }
+
+        [JsonPropertyName("employeeEducationInfos")]
+        public List<EmployeeEducationInfoDTO> EmployeeEducationInfos { get; set; }
+
+        [JsonPropertyName("employeeProfessionalCertifications")]
+        public List<EmployeeProfessionalCertificationDTO> EmployeeProfessionalCertifications { get; set; }
 
     }
 

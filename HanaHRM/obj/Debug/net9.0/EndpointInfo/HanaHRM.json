@@ -372,17 +372,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Employee"
+                "$ref": "#/components/schemas/EmployeeDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Employee"
+                "$ref": "#/components/schemas/EmployeeDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Employee"
+                "$ref": "#/components/schemas/EmployeeDTO"
               }
             }
           }
@@ -929,6 +929,149 @@
         },
         "additionalProperties": false
       },
+      "EmployeeDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "employeeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeNameBangla": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeImage": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "fatherName": {
+            "type": "string",
+            "nullable": true
+          },
+          "motherName": {
+            "type": "string",
+            "nullable": true
+          },
+          "idReportingManager": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "idJobType": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "idEmployeeType": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "joiningDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "idGender": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "idReligion": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "idDepartment": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idSection": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idDesignation": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "hasOvertime": {
+            "type": "boolean"
+          },
+          "hasAttendenceBonus": {
+            "type": "boolean"
+          },
+          "idWeekOff": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "presentAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "nationalIdentificationNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "idMaritalStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "setDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeDocuments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeeDocumentDTO"
+            },
+            "nullable": true
+          },
+          "employeeEducationInfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeeEducationInfoDTO"
+            },
+            "nullable": true
+          },
+          "employeeProfessionalCertifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeeProfessionalCertificationDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "EmployeeDocument": {
         "type": "object",
         "properties": {
@@ -984,6 +1127,49 @@
           },
           "employee": {
             "$ref": "#/components/schemas/Employee"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployeeDocumentDTO": {
+        "type": "object",
+        "properties": {
+          "idClient": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEmployee": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "uploadedFileExtention": {
+            "type": "string",
+            "nullable": true
+          },
+          "uploadDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "setDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1080,6 +1266,96 @@
           },
           "employee": {
             "$ref": "#/components/schemas/Employee"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployeeEducationInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idClient": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEmployee": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEducationLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEducationExamination": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEducationResult": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cgpa": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "examScale": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "marks": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "major": {
+            "type": "string",
+            "nullable": true
+          },
+          "passingYear": {
+            "type": "number",
+            "format": "double"
+          },
+          "instituteName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isForeignInstitute": {
+            "type": "boolean"
+          },
+          "duration": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "achievement": {
+            "type": "string",
+            "nullable": true
+          },
+          "setDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "educationLevelName": {
+            "type": "string",
+            "nullable": true
+          },
+          "examinationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "resultName": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1211,6 +1487,54 @@
           },
           "employee": {
             "$ref": "#/components/schemas/Employee"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployeeProfessionalCertificationDTO": {
+        "type": "object",
+        "properties": {
+          "idClient": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEmployee": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "certificationTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificationInstitute": {
+            "type": "string",
+            "nullable": true
+          },
+          "instituteLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "toDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "setDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

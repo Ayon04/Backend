@@ -210,8 +210,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "emp",
-        "Type": "HanaHRM.DataAccess.Models.Employee",
+        "Name": "empDto",
+        "Type": "HanaHRM.DTO.EmployeeDTO",
         "IsRequired": true
       }
     ],

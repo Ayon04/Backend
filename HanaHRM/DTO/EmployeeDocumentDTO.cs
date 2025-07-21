@@ -6,8 +6,8 @@
         public int Id { get; set; }
         public int IdEmployee { get; set; }
 
-        public string DocumentName { get; set; } = null!;
-        public string FileName { get; set; } = null!;
+        public string DocumentName { get; set; }
+        public string FileName { get; set; } 
         public string? UploadedFileExtention { get; set; }
 
         public DateTime UploadDate { get; set; }
