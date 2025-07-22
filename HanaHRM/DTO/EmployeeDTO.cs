@@ -5,6 +5,7 @@ namespace HanaHRM.DTO
     public class EmployeeDTO
     {
         public int Id { get; set; }
+        public int ClientId { get; set; }
         public string ? EmployeeName { get; set; }
         public string ? EmployeeNameBangla { get; set; }
         public byte[]? EmployeeImage { get; set; }
@@ -28,17 +29,14 @@ namespace HanaHRM.DTO
         public string NationalIdentificationNumber { get; set; }
         public string ContactNo { get; set; }
         public int? IdMaritalStatus { get; set; }
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
         public DateTime SetDate { get; set; }
         public string CreatedBy { get; set; }
 
-        [JsonPropertyName("employeeDocuments")]
         public List<EmployeeDocumentDTO> EmployeeDocuments { get; set; }
 
-        [JsonPropertyName("employeeEducationInfos")]
         public List<EmployeeEducationInfoDTO> EmployeeEducationInfos { get; set; }
 
-        [JsonPropertyName("employeeProfessionalCertifications")]
         public List<EmployeeProfessionalCertificationDTO> EmployeeProfessionalCertifications { get; set; }
 
     }

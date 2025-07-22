@@ -330,3 +330,6 @@ C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\obj\Debug\net9.0\refint\HanaHRM.dll
 C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\obj\Debug\net9.0\HanaHRM.pdb
 C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\obj\Debug\net9.0\HanaHRM.genruntimeconfig.cache
 C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\obj\Debug\net9.0\ref\HanaHRM.dll
+C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\bin\Debug\net9.0\FluentValidation.dll
+C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll

@@ -261,6 +261,27 @@
   },
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
+    "Method": "GetEmployeeById",
+    "RelativePath": "api/employee/employeebyid/{Idclient}/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Idclient",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetAllEmployeeDocuments",
     "RelativePath": "api/employee/getallemployeedocuments",
     "HttpMethod": "GET",
@@ -311,34 +332,38 @@
   },
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
-    "Method": "GetEmployeeById",
-    "RelativePath": "api/employee/getemployeebyid",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HanaHRM.Controllers.EmployeeController",
-    "Method": "EditEmployee",
-    "RelativePath": "api/employee/updateemployee",
+    "Method": "UpdateAsync",
+    "RelativePath": "api/employee/update/{idClient}/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "emp",
-        "Type": "HanaHRM.DataAccess.Models.Employee",
+        "Name": "employee",
+        "Type": "HanaHRM.DTO.EmployeeDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "idClient",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
