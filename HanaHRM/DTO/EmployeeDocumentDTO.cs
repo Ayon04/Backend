@@ -14,5 +14,7 @@
         public DateTime? SetDate { get; set; }
 
         public string? CreatedBy { get; set; }
+        public IFormFile? DocumentFile { get; set; }
+
     }
 }

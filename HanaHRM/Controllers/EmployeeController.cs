@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace HanaHRM.Controllers
 {
@@ -247,88 +248,128 @@ namespace HanaHRM.Controllers
 
 
 
-    /*    [HttpGet("getemployeebyid")]
-        public async Task<IActionResult> GetEmployeeById(int id, CancellationToken ct)
-        {
-            var data = await  _context.Employees.Where(e => e.IdClient == clientId).FirstOrDefaultAsync(e => e.Id == id, ct);
+        /*    [HttpGet("getemployeebyid")]
+            public async Task<IActionResult> GetEmployeeById(int id, CancellationToken ct)
+            {
+                var data = await  _context.Employees.Where(e => e.IdClient == clientId).FirstOrDefaultAsync(e => e.Id == id, ct);
 
-            return Ok(data);
-        }
-*/
- 
-        [HttpPost("createemployee")]
-        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDTO empDto, CancellationToken ct)
-        {
+                return Ok(data);
+            }
+    */
+
+           [HttpPost("createemployee")]
+            public async Task<IActionResult> CreateEmployee([FromForm] EmployeeDTO empDto, CancellationToken ct)
+            {
+            async Task<byte[]?> ConvertFileToByteArrayAsync(IFormFile? file)
+
+            {
+
+                if (file == null || file.Length == 0)
+
+                    return null;
+
+                using var memoryStream = new MemoryStream();
+
+                await file.CopyToAsync(memoryStream);
+
+                return memoryStream.ToArray();
+
+            }
+
+
+
             var emp = new Employee
             {
-                EmployeeName = empDto.EmployeeName ,
-                EmployeeNameBangla = empDto.EmployeeNameBangla,
-                FatherName = empDto.FatherName,
-                MotherName = empDto.MotherName,
-                IdDepartment = empDto.IdDepartment,
-                IdSection = empDto.IdSection,
-                IdDesignation = empDto.IdDesignation,
-                IdGender = empDto.IdGender,
-                IdReligion = empDto.IdReligion,
-                IdJobType = empDto.IdJobType,
-                IdEmployeeType = empDto.IdEmployeeType,
-                IdMaritalStatus = empDto.IdMaritalStatus,
-                IdWeekOff = empDto.IdWeekOff,
-                HasOvertime = empDto.HasOvertime,
-                HasAttendenceBonus = empDto.HasAttendenceBonus,
-                Address = empDto.Address,
-                PresentAddress = empDto.PresentAddress,
-                NationalIdentificationNumber = empDto.NationalIdentificationNumber,
-                ContactNo = empDto.ContactNo,
-                JoiningDate = empDto.JoiningDate,
-                BirthDate = empDto.BirthDate,
-                SetDate = DateTime.Now,
+                    EmployeeName = empDto.EmployeeName ,
+                    EmployeeNameBangla = empDto.EmployeeNameBangla,
+                    EmployeeImage = await ConvertFileToByteArrayAsync(empDto.EmpImg),
+                    FatherName = empDto.FatherName,
+                    MotherName = empDto.MotherName,
+                    IdDepartment = empDto.IdDepartment,
+                    IdSection = empDto.IdSection,
+                    IdDesignation = empDto.IdDesignation,
+                    IdGender = empDto.IdGender,
+                    IdReligion = empDto.IdReligion,
+                    IdJobType = empDto.IdJobType,
+                    IdEmployeeType = empDto.IdEmployeeType,
+                    IdMaritalStatus = empDto.IdMaritalStatus,
+                    IdWeekOff = empDto.IdWeekOff,
+                    HasOvertime = empDto.HasOvertime,
+                    HasAttendenceBonus = empDto.HasAttendenceBonus,
+                    Address = empDto.Address,
+                    PresentAddress = empDto.PresentAddress,
+                    NationalIdentificationNumber = empDto.NationalIdentificationNumber,
+                    ContactNo = empDto.ContactNo,
+                    JoiningDate = empDto.JoiningDate,
+                    BirthDate = empDto.BirthDate,
+                    SetDate = DateTime.Now,
+                    EmployeeDocuments = new List<EmployeeDocument>(),
+
 
                 EmployeeEducationInfos = empDto.EmployeeEducationInfos.Select(edu => new EmployeeEducationInfo
-                {
-                    IdClient = edu.IdClient,
-                    IdEducationLevel = edu.IdEducationLevel,
-                    IdEducationExamination = edu.IdEducationExamination,
-                    IdEducationResult = edu.IdEducationResult,
-                    Cgpa = edu.Cgpa,
-                    ExamScale = edu.ExamScale,
-                    Marks = edu.Marks,
-                    Major = edu.Major,
-                    PassingYear = edu.PassingYear,
-                    InstituteName = edu.InstituteName,
-                    IsForeignInstitute = edu.IsForeignInstitute,
-                    Duration = edu.Duration ?? default,
-                    Achievement = edu.Achievement,
-                    SetDate = DateTime.Now
-                }).ToList(),
+                    {
+                        IdClient = edu.IdClient,
+                        IdEducationLevel = edu.IdEducationLevel,
+                        IdEducationExamination = edu.IdEducationExamination,
+                        IdEducationResult = edu.IdEducationResult,
+                        Cgpa = edu.Cgpa,
+                        ExamScale = edu.ExamScale,
+                        Marks = edu.Marks,
+                        Major = edu.Major,
+                        PassingYear = edu.PassingYear,
+                        InstituteName = edu.InstituteName,
+                        IsForeignInstitute = edu.IsForeignInstitute,
+                        Duration = edu.Duration ?? default,
+                        Achievement = edu.Achievement,
+                        SetDate = DateTime.Now
+                    }).ToList(),
+               
+               /* EmployeeDocuments = empDto.EmployeeDocuments.Select(doc => new EmployeeDocument
+                    {
+                        IdClient = doc.IdClient,
+                        DocumentName = doc.DocumentName,
+                        FileName = doc.FileName,
+                        UploadedFileExtention = doc.UploadedFileExtention,
+                        UploadDate = DateTime.Now,
+                        SetDate = DateTime.Now
+                    }).ToList(),
+*/
 
-                EmployeeDocuments = empDto.EmployeeDocuments.Select(doc => new EmployeeDocument
+
+                    EmployeeProfessionalCertifications = empDto.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertification
+                    {
+                        IdClient = cert.IdClient,
+                        CertificationTitle = cert.CertificationTitle,
+                        CertificationInstitute = cert.CertificationInstitute,
+                        InstituteLocation = cert.InstituteLocation,
+                        FromDate = cert.FromDate,
+                        ToDate = cert.ToDate,
+                        SetDate = DateTime.Now
+                    }).ToList(),
+                };
+
+
+            foreach (var doc in empDto.EmployeeDocuments)
+            {
+                var uploadedBytes = await ConvertFileToByteArrayAsync(doc.DocumentFile);
+                var extension = Path.GetExtension(doc.DocumentFile?.FileName);
+                emp.EmployeeDocuments.Add(new EmployeeDocument
                 {
                     IdClient = doc.IdClient,
                     DocumentName = doc.DocumentName,
                     FileName = doc.FileName,
-                    UploadedFileExtention = doc.UploadedFileExtention,
-                    UploadDate = DateTime.Now,
+                    UploadDate = doc.UploadDate,
+                    UploadedFileExtention = extension,
+                    UploadedFile = uploadedBytes,
                     SetDate = DateTime.Now
-                }).ToList(),
-
-                EmployeeProfessionalCertifications = empDto.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertification
-                {
-                    IdClient = cert.IdClient,
-                    CertificationTitle = cert.CertificationTitle,
-                    CertificationInstitute = cert.CertificationInstitute,
-                    InstituteLocation = cert.InstituteLocation,
-                    FromDate = cert.FromDate,
-                    ToDate = cert.ToDate,
-                    SetDate = DateTime.Now
-                }).ToList(),
-            };
+                });
+            }
 
             await _context.Employees.AddAsync(emp, ct);
             await _context.SaveChangesAsync(ct);
 
             return Ok(new { message = "Employee created successfully!", emp.Id });
-        }
+            }
 
         /*      [HttpPost("createemployee")]
                public async Task<IActionResult> CreateEmployee([FromBody] Employee emp, CancellationToken ct)
@@ -424,6 +465,10 @@ namespace HanaHRM.Controllers
                     return Ok(new { message = "Data Updated successfully" });
                 }
         */
+
+
+
+
         [HttpPut("update/{idClient}/{id}")]
         public async Task<int> UpdateAsync([FromBody] EmployeeDTO employee, int idClient, int id ,CancellationToken cancellationToken)
         {
@@ -593,7 +638,8 @@ namespace HanaHRM.Controllers
 
 
 
-        [HttpDelete("deleteemployee/{idClient}/{id}")]
+
+[HttpDelete("deleteemployee/{idClient}/{id}")]
         public async Task<IActionResult> DeleteEmployee(int idClient, int id ,CancellationToken ct)
         {
             var empToDelete =await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id,ct);
