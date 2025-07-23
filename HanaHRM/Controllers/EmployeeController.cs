@@ -501,7 +501,7 @@ namespace HanaHRM.Controllers
         [HttpGet("image/{IdClient}/{id}")]
         public async Task<IActionResult> GetEmployeeImage(int IdClient,int id)
         {
-            var employee = await _context.Employees.FindAsync(IdClient,id);
+            var employee = await _context.Employees.FirstOrDefaultAsync(ed => ed.IdClient == IdClient && ed.Id == id);
 
             if (employee == null || employee.EmployeeImage == null)
                 return NotFound("Image not found");
@@ -514,7 +514,7 @@ namespace HanaHRM.Controllers
         [HttpGet("document/{IdClient}/{id}")]
         public async Task<IActionResult> GetEmployeeDocument(int IdClient, int id)
         {
-            var employeeDocumnet = await _context.EmployeeDocuments.FindAsync(IdClient, id);
+            var employeeDocumnet = await _context.EmployeeDocuments.FirstOrDefaultAsync(ed => ed.IdClient == IdClient && ed.IdEmployee == id);
 
             if (employeeDocumnet == null || employeeDocumnet.UploadedFile == null)
                 return NotFound("Document not found");
