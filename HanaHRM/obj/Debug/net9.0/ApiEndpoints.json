@@ -411,6 +411,27 @@
   },
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
+    "Method": "GetEmployeeDocument",
+    "RelativePath": "api/employee/document/{IdClient}/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdClient",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetEmployeeById",
     "RelativePath": "api/employee/employeebyid/{Idclient}/{id}",
     "HttpMethod": "GET",
@@ -478,6 +499,27 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HanaHRM.Controllers.EmployeeController",
+    "Method": "GetEmployeeImage",
+    "RelativePath": "api/employee/image/{IdClient}/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdClient",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

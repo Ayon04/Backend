@@ -333,3 +333,6 @@ C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\obj\Debug\net9.0\ref\HanaHRM.dll
 C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\bin\Debug\net9.0\FluentValidation.dll
 C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
 C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\bin\Debug\net9.0\ImageSharp.Heif.dll
+C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\bin\Debug\net9.0\LibHeifSharp.dll
+C:\Users\ayon.ghosh\Projects\Backend\HanaHRM\bin\Debug\net9.0\SixLabors.ImageSharp.dll

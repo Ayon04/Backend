@@ -336,17 +336,17 @@ namespace HanaHRM.Controllers
 */
 
 
-                    EmployeeProfessionalCertifications = empDto.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertification
-                    {
-                        IdClient = cert.IdClient,
-                        CertificationTitle = cert.CertificationTitle,
-                        CertificationInstitute = cert.CertificationInstitute,
-                        InstituteLocation = cert.InstituteLocation,
-                        FromDate = cert.FromDate,
-                        ToDate = cert.ToDate,
-                        SetDate = DateTime.Now
-                    }).ToList(),
-                };
+                EmployeeProfessionalCertifications = empDto.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertification
+                {
+                    IdClient = cert.IdClient,
+                    CertificationTitle = cert.CertificationTitle,
+                    CertificationInstitute = cert.CertificationInstitute,
+                    InstituteLocation = cert.InstituteLocation,
+                    FromDate = cert.FromDate,
+                    ToDate = cert.ToDate,
+                    SetDate = DateTime.Now
+                }).ToList(),
+            };
 
 
             foreach (var doc in empDto.EmployeeDocuments)
@@ -466,7 +466,63 @@ namespace HanaHRM.Controllers
                 }
         */
 
+        private string GetMimeType(byte[] data)
+        {
+            if (data == null || data.Length == 0)
+                return "application/octet-stream";
 
+            // Tuple: (signature bytes, mime type)
+            var signatures = new (byte[] signature, string mime)[]
+            {
+            (new byte[] { 0xFF, 0xD8 }, "image/jpeg"),
+            (new byte[] { 0x89, 0x50, 0x4E, 0x47 }, "image/png"),
+            (new byte[] { 0x47, 0x49, 0x46 }, "image/gif"),
+            (new byte[] { 0x42, 0x4D }, "image/bmp"),
+            (new byte[] { 0x49, 0x49, 0x2A, 0x00 }, "image/tiff"),
+            (new byte[] { 0x4D, 0x4D, 0x00, 0x2A }, "image/tiff"),
+            (new byte[] { 0x25, 0x50, 0x44, 0x46 }, "application/pdf"),
+            (new byte[] { 0x50, 0x4B, 0x03, 0x04 }, "application/zip"),
+            (new byte[] { 0x52, 0x61, 0x72, 0x21 }, "application/x-rar-compressed"),
+            (new byte[] { 0x37, 0x7A, 0xBC, 0xAF, 0x27, 0x1C }, "application/x-7z-compressed"),
+            (new byte[] { 0x00, 0x00, 0x01, 0x00 }, "image/x-icon"),
+            (new byte[] { 0x00, 0x00, 0x02, 0x00 }, "image/x-icon")
+            };
+
+            foreach (var (signature, mime) in signatures)
+            {
+                if (data.Length >= signature.Length && data.AsSpan(0, signature.Length).SequenceEqual(signature))
+                    return mime;
+            }
+
+            return "application/octet-stream";
+        }
+
+
+        [HttpGet("image/{IdClient}/{id}")]
+        public async Task<IActionResult> GetEmployeeImage(int IdClient,int id)
+        {
+            var employee = await _context.Employees.FindAsync(IdClient,id);
+
+            if (employee == null || employee.EmployeeImage == null)
+                return NotFound("Image not found");
+
+            var mimeType = GetMimeType(employee.EmployeeImage);
+
+            return File(employee.EmployeeImage, mimeType);
+        }
+
+        [HttpGet("document/{IdClient}/{id}")]
+        public async Task<IActionResult> GetEmployeeDocument(int IdClient, int id)
+        {
+            var employeeDocumnet = await _context.EmployeeDocuments.FindAsync(IdClient, id);
+
+            if (employeeDocumnet == null || employeeDocumnet.UploadedFile == null)
+                return NotFound("Document not found");
+
+            var mimeType = GetMimeType(employeeDocumnet.UploadedFile);
+
+            return File(employeeDocumnet.UploadedFile, mimeType);
+        }
 
 
         [HttpPut("update/{idClient}/{id}")]
@@ -639,7 +695,7 @@ namespace HanaHRM.Controllers
 
 
 
-[HttpDelete("deleteemployee/{idClient}/{id}")]
+        [HttpDelete("deleteemployee/{idClient}/{id}")]
         public async Task<IActionResult> DeleteEmployee(int idClient, int id ,CancellationToken ct)
         {
             var empToDelete =await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id,ct);
