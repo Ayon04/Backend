@@ -33,26 +33,26 @@ namespace HanaHRM.Controllers
         [HttpGet("allemployeedocuments")]
         public async Task<IActionResult> GetAllEmployeeDocuments(CancellationToken ct)
         {
-            var data = await _context.EmployeeDocuments.Where(e => e.IdClient == clientId).ToListAsync(ct);
+            var data = await _context.EmployeeDocuments.AsNoTracking().Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
         [HttpGet("allemployeeeducationinfo")]
         public async Task<IActionResult> GetAllEmployeeEducationInfo(CancellationToken ct)
         {
-            var data = await _context.EmployeeEducationInfos.Where(e => e.IdClient == clientId).ToListAsync(ct);
+            var data = await _context.EmployeeEducationInfos.AsNoTracking().Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
         [HttpGet("allemployeefamilyinfo")]
         public async Task<IActionResult> GetAllEmployeeFamilyInfo(CancellationToken ct)
         {
-            var data = await _context.EmployeeFamilyInfos.Where(e => e.IdClient == clientId).ToListAsync(ct);
+            var data = await _context.EmployeeFamilyInfos.AsNoTracking().Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
 
         [HttpGet("allemployeeprofessionalcertifications")]
         public async Task<IActionResult> GetAllEmployeeProfessionalCertifications(CancellationToken ct)
         {
-            var data = await _context.EmployeeProfessionalCertifications.Where(e => e.IdClient == clientId).ToListAsync(ct);
+            var data = await _context.EmployeeProfessionalCertifications.AsNoTracking().Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
 
@@ -242,6 +242,8 @@ namespace HanaHRM.Controllers
                 }).ToList()
             }).ToList();
 
+
+
             return Ok(employeeDTOs);
         }
 
@@ -342,7 +344,6 @@ namespace HanaHRM.Controllers
 
             await _context.Employees.AddAsync(emp, ct);
             await _context.SaveChangesAsync(ct);
-
             return Ok(new { message = "Employee created successfully!", emp.Id });
             }
 
@@ -378,7 +379,7 @@ namespace HanaHRM.Controllers
         }
 
 
-        [HttpGet("image/{IdClient}/{id}")]
+       /* [HttpGet("image/{IdClient}/{id}")]
         public async Task<IActionResult> GetEmployeeImage(int IdClient,int id)
         {
             var employee = await _context.Employees.FirstOrDefaultAsync(ed => ed.IdClient == IdClient && ed.Id == id);
@@ -389,7 +390,7 @@ namespace HanaHRM.Controllers
             var mimeType = GetMimeType(employee.EmployeeImage);
 
             return File(employee.EmployeeImage, mimeType);
-        }
+        }*/
 
         [HttpGet("document/{IdClient}/{id}")]
         public async Task<IActionResult> GetEmployeeDocument(int IdClient, int id)
