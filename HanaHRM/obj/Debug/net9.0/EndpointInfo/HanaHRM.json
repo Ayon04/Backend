@@ -269,7 +269,7 @@
         }
       }
     },
-    "/api/employee/getallemployees": {
+    "/api/employee/allemployees": {
       "get": {
         "tags": [
           "Employee"
@@ -281,7 +281,7 @@
         }
       }
     },
-    "/api/employee/getallemployeedocuments": {
+    "/api/employee/allemployeedocuments": {
       "get": {
         "tags": [
           "Employee"
@@ -293,7 +293,7 @@
         }
       }
     },
-    "/api/employee/getallemployeeeducationinfo": {
+    "/api/employee/allemployeeeducationinfo": {
       "get": {
         "tags": [
           "Employee"
@@ -305,7 +305,7 @@
         }
       }
     },
-    "/api/employee/getallemployeefamilyinfo": {
+    "/api/employee/allemployeefamilyinfo": {
       "get": {
         "tags": [
           "Employee"
@@ -317,7 +317,7 @@
         }
       }
     },
-    "/api/employee/getallemployeeprofessionalcertifications": {
+    "/api/employee/allemployeeprofessionalcertifications": {
       "get": {
         "tags": [
           "Employee"
@@ -341,7 +341,7 @@
         }
       }
     },
-    "/api/employee/employeebyid/{Idclient}/{id}": {
+    "/api/employee/{Idclient}/{id}": {
       "get": {
         "tags": [
           "Employee"
@@ -373,7 +373,7 @@
         }
       }
     },
-    "/api/employee/createemployee": {
+    "/api/employee/create": {
       "post": {
         "tags": [
           "Employee"
@@ -744,7 +744,7 @@
         }
       }
     },
-    "/api/employee/deleteemployee/{idClient}/{id}": {
+    "/api/employee/delete/{idClient}/{id}": {
       "delete": {
         "tags": [
           "Employee"

@@ -22,7 +22,7 @@ namespace HanaHRM.Controllers
 
        
         int clientId = 10001001;
-        [HttpGet("getallemployees")]
+        [HttpGet("allemployees")]
         public async Task<IActionResult> GetAllEmployees(CancellationToken ct)
         {
             
@@ -30,26 +30,26 @@ namespace HanaHRM.Controllers
             return Ok(data);
         }
 
-        [HttpGet("getallemployeedocuments")]
+        [HttpGet("allemployeedocuments")]
         public async Task<IActionResult> GetAllEmployeeDocuments(CancellationToken ct)
         {
             var data = await _context.EmployeeDocuments.Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
-        [HttpGet("getallemployeeeducationinfo")]
+        [HttpGet("allemployeeeducationinfo")]
         public async Task<IActionResult> GetAllEmployeeEducationInfo(CancellationToken ct)
         {
             var data = await _context.EmployeeEducationInfos.Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
-        [HttpGet("getallemployeefamilyinfo")]
+        [HttpGet("allemployeefamilyinfo")]
         public async Task<IActionResult> GetAllEmployeeFamilyInfo(CancellationToken ct)
         {
             var data = await _context.EmployeeFamilyInfos.Where(e => e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
         }
 
-        [HttpGet("getallemployeeprofessionalcertifications")]
+        [HttpGet("allemployeeprofessionalcertifications")]
         public async Task<IActionResult> GetAllEmployeeProfessionalCertifications(CancellationToken ct)
         {
             var data = await _context.EmployeeProfessionalCertifications.Where(e => e.IdClient == clientId).ToListAsync(ct);
@@ -59,7 +59,7 @@ namespace HanaHRM.Controllers
         //GET APIS 
 
         [HttpGet("allemployeedetails")]
-        public async Task<IActionResult> GetEmployeeAllInfo(CancellationToken ct)
+        public async Task<IActionResult> GetAllEmployeeDetails(CancellationToken ct)
         {
          
             var employees = await _context.Employees
@@ -152,7 +152,7 @@ namespace HanaHRM.Controllers
         }
 
 
-        [HttpGet("employeebyid/{Idclient}/{id}")]
+        [HttpGet("{Idclient}/{id}")]
         public async Task<IActionResult> GetEmployeeById(int Idclient,int id ,CancellationToken ct)
         {
 
@@ -246,18 +246,7 @@ namespace HanaHRM.Controllers
         }
 
 
-
-
-        /*    [HttpGet("getemployeebyid")]
-            public async Task<IActionResult> GetEmployeeById(int id, CancellationToken ct)
-            {
-                var data = await  _context.Employees.Where(e => e.IdClient == clientId).FirstOrDefaultAsync(e => e.Id == id, ct);
-
-                return Ok(data);
-            }
-    */
-
-           [HttpPost("createemployee")]
+           [HttpPost("create")]
             public async Task<IActionResult> CreateEmployee([FromForm] EmployeeDTO empDto, CancellationToken ct)
             {
             async Task<byte[]?> ConvertFileToByteArrayAsync(IFormFile? file)
@@ -275,8 +264,6 @@ namespace HanaHRM.Controllers
                 return memoryStream.ToArray();
 
             }
-
-
 
             var emp = new Employee
             {
@@ -307,7 +294,7 @@ namespace HanaHRM.Controllers
 
 
                 EmployeeEducationInfos = empDto.EmployeeEducationInfos.Select(edu => new EmployeeEducationInfo
-                    {
+                 {
                         IdClient = edu.IdClient,
                         IdEducationLevel = edu.IdEducationLevel,
                         IdEducationExamination = edu.IdEducationExamination,
@@ -324,18 +311,6 @@ namespace HanaHRM.Controllers
                         SetDate = DateTime.Now
                     }).ToList(),
                
-               /* EmployeeDocuments = empDto.EmployeeDocuments.Select(doc => new EmployeeDocument
-                    {
-                        IdClient = doc.IdClient,
-                        DocumentName = doc.DocumentName,
-                        FileName = doc.FileName,
-                        UploadedFileExtention = doc.UploadedFileExtention,
-                        UploadDate = DateTime.Now,
-                        SetDate = DateTime.Now
-                    }).ToList(),
-*/
-
-
                 EmployeeProfessionalCertifications = empDto.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertification
                 {
                     IdClient = cert.IdClient,
@@ -371,107 +346,12 @@ namespace HanaHRM.Controllers
             return Ok(new { message = "Employee created successfully!", emp.Id });
             }
 
-        /*      [HttpPost("createemployee")]
-               public async Task<IActionResult> CreateEmployee([FromBody] Employee emp, CancellationToken ct)
-               {
-
-                   emp.SetDate = DateTime.Now;
-                   await _context.Employees.AddAsync(emp, ct);
-                   await _context.SaveChangesAsync(ct);
-
-                   return Ok(new { message = "Employee created successfully!", emp.Id });
-               }*/
-        /*
-
-                [HttpPut("updateemployee")]
-                public async Task<IActionResult> EditEmployee([FromBody] Employee emp, CancellationToken ct)
-                {
-                    var currentEmp = await _context.Employees
-                        .Include(e => e.EmployeeDocuments)
-                        .Include(e => e.EmployeeEducationInfos)
-                        .Include(e => e.EmployeeProfessionalCertifications)
-                        .FirstOrDefaultAsync(e => e.IdClient == emp.IdClient && e.Id == emp.Id, ct);
-
-                    if (currentEmp == null)
-                        return NotFound(new { error = "Employee not found!" });
-
-                    currentEmp.EmployeeName = emp.EmployeeName;
-                    currentEmp.EmployeeNameBangla = emp.EmployeeNameBangla;
-                    currentEmp.FatherName = emp.FatherName;
-                    currentEmp.MotherName = emp.MotherName;
-                    currentEmp.BirthDate = emp.BirthDate;
-                    currentEmp.JoiningDate = emp.JoiningDate;
-                    currentEmp.IdSection = emp.IdSection;
-                    currentEmp.IdDepartment = emp.IdDepartment;
-                    currentEmp.HasAttendenceBonus = emp.HasAttendenceBonus;
-                    currentEmp.Address = emp.Address;
-                    currentEmp.PresentAddress = emp.PresentAddress;
-                    currentEmp.NationalIdentificationNumber = emp.NationalIdentificationNumber;
-                    currentEmp.ContactNo = emp.ContactNo;
-
-                    _context.EmployeeDocuments.RemoveRange(currentEmp.EmployeeDocuments);
-                    await _context.EmployeeDocuments.AddRangeAsync(emp.EmployeeDocuments.Select(doc => new EmployeeDocument
-                    {
-                        IdClient = doc.IdClient,
-                        Id = doc.Id,
-                        IdEmployee = emp.Id,
-                        DocumentName = doc.DocumentName,
-                        FileName = doc.FileName,
-                        UploadedFileExtention = doc.UploadedFileExtention,
-                        UploadDate = doc.UploadDate,
-                        SetDate = doc.SetDate,
-                        CreatedBy = doc.CreatedBy,
-                    }));
-
-                    _context.EmployeeEducationInfos.RemoveRange(currentEmp.EmployeeEducationInfos);
-                    await _context.EmployeeEducationInfos.AddRangeAsync(emp.EmployeeEducationInfos.Select(edu => new EmployeeEducationInfo
-                    {
-                        IdClient = edu.IdClient,
-                        Id = edu.Id,
-                        IdEmployee = emp.Id,
-                        IdEducationLevel = edu.IdEducationLevel,
-                        IdEducationExamination = edu.IdEducationExamination,
-                        IdEducationResult = edu.IdEducationResult,
-                        Cgpa = edu.Cgpa,
-                        ExamScale = edu.ExamScale,
-                        Marks = edu.Marks,
-                        Major = edu.Major,
-                        PassingYear = edu.PassingYear,
-                        InstituteName = edu.InstituteName,
-                        IsForeignInstitute = edu.IsForeignInstitute,
-                        Duration = edu.Duration,
-                        Achievement = edu.Achievement,
-                        SetDate = edu.SetDate,
-                        CreatedBy = edu.CreatedBy,
-                    }));
-
-                    _context.EmployeeProfessionalCertifications.RemoveRange(currentEmp.EmployeeProfessionalCertifications);
-                    await _context.EmployeeProfessionalCertifications.AddRangeAsync(emp.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertification
-                    {
-                        IdClient = cert.IdClient,
-                        Id = cert.Id,
-                        IdEmployee = emp.Id,
-                        CertificationTitle = cert.CertificationTitle,
-                        CertificationInstitute = cert.CertificationInstitute,
-                        InstituteLocation = cert.InstituteLocation,
-                        FromDate = cert.FromDate,
-                        ToDate = cert.ToDate,
-                        SetDate = cert.SetDate,
-                        CreatedBy = cert.CreatedBy,
-                    }));
-
-                    await _context.SaveChangesAsync(ct);
-
-                    return Ok(new { message = "Data Updated successfully" });
-                }
-        */
 
         private string GetMimeType(byte[] data)
         {
             if (data == null || data.Length == 0)
                 return "application/octet-stream";
 
-            // Tuple: (signature bytes, mime type)
             var signatures = new (byte[] signature, string mime)[]
             {
             (new byte[] { 0xFF, 0xD8 }, "image/jpeg"),
@@ -585,7 +465,6 @@ namespace HanaHRM.Controllers
             }
 
 
-            //up/insert information
             foreach (var item in employee.EmployeeDocuments)
             {
                 var existingEntry = existingEmployee.EmployeeDocuments.FirstOrDefault(ed => ed.IdClient == item.IdClient && ed.Id == item.Id);
@@ -693,9 +572,7 @@ namespace HanaHRM.Controllers
         }
 
 
-
-
-        [HttpDelete("deleteemployee/{idClient}/{id}")]
+        [HttpDelete("delete/{idClient}/{id}")]
         public async Task<IActionResult> DeleteEmployee(int idClient, int id ,CancellationToken ct)
         {
             var empToDelete =await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id,ct);
@@ -712,7 +589,7 @@ namespace HanaHRM.Controllers
         }
 
         //Soft Delete using boolian flag (IsActive)
-        [HttpPatch("deleteemployee/{idClient}/{id}")]
+        [HttpPatch("delete/{idClient}/{id}")]
         public async Task<IActionResult> HideEmployee(int idClient, int id,CancellationToken ct)
         {
             var empToHide = await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id, ct);
