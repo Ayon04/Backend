@@ -20,8 +20,7 @@ namespace HanaHRM.Controllers
             _context = context;
         }
 
-       
-       // int clientId = 10001001;
+      
         [HttpGet("allemployees")]
         public async Task<IActionResult> GetAllEmployees(int idClient, CancellationToken ct)
         {
