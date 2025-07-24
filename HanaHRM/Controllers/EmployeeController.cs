@@ -11,15 +11,9 @@ namespace HanaHRM.Controllers
 {
     [Route("api/employee")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class EmployeeController(HRMDbContext _context) : ControllerBase
     {
-        private readonly HRMDbContext _context;
-
-        public EmployeeController(HRMDbContext context)
-        {
-            _context = context;
-        }
-
+       
       
         [HttpGet("allemployees")]
         public async Task<IActionResult> GetAllEmployees(int idClient, CancellationToken ct)
