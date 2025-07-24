@@ -274,6 +274,16 @@
         "tags": [
           "Employee"
         ],
+        "parameters": [
+          {
+            "name": "idClient",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -285,6 +295,16 @@
       "get": {
         "tags": [
           "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "idClient",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -298,6 +318,16 @@
         "tags": [
           "Employee"
         ],
+        "parameters": [
+          {
+            "name": "idClient",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -309,6 +339,16 @@
       "get": {
         "tags": [
           "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "idClient",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -322,6 +362,16 @@
         "tags": [
           "Employee"
         ],
+        "parameters": [
+          {
+            "name": "idClient",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -333,6 +383,16 @@
       "get": {
         "tags": [
           "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "idClient",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -662,19 +722,224 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/EmployeeDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EmployeeDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/EmployeeDTO"
+                "type": "object",
+                "properties": {
+                  "IdClient": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "EmployeeName": {
+                    "type": "string"
+                  },
+                  "EmployeeNameBangla": {
+                    "type": "string"
+                  },
+                  "FatherName": {
+                    "type": "string"
+                  },
+                  "MotherName": {
+                    "type": "string"
+                  },
+                  "IdReportingManager": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "IdJobType": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "IdEmployeeType": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "BirthDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "JoiningDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "IdGender": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "IdReligion": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "IdDepartment": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "IdSection": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "IdDesignation": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "HasOvertime": {
+                    "type": "boolean"
+                  },
+                  "HasAttendenceBonus": {
+                    "type": "boolean"
+                  },
+                  "IdWeekOff": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Address": {
+                    "type": "string"
+                  },
+                  "PresentAddress": {
+                    "type": "string"
+                  },
+                  "NationalIdentificationNumber": {
+                    "type": "string"
+                  },
+                  "ContactNo": {
+                    "type": "string"
+                  },
+                  "IdMaritalStatus": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "IsActive": {
+                    "type": "boolean"
+                  },
+                  "SetDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "CreatedBy": {
+                    "type": "string"
+                  },
+                  "EmployeeDocuments": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/EmployeeDocumentDTO"
+                    }
+                  },
+                  "EmployeeEducationInfos": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/EmployeeEducationInfoDTO"
+                    }
+                  },
+                  "EmployeeProfessionalCertifications": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/EmployeeProfessionalCertificationDTO"
+                    }
+                  },
+                  "EmpImg": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "IdClient": {
+                  "style": "form"
+                },
+                "Id": {
+                  "style": "form"
+                },
+                "EmployeeName": {
+                  "style": "form"
+                },
+                "EmployeeNameBangla": {
+                  "style": "form"
+                },
+                "FatherName": {
+                  "style": "form"
+                },
+                "MotherName": {
+                  "style": "form"
+                },
+                "IdReportingManager": {
+                  "style": "form"
+                },
+                "IdJobType": {
+                  "style": "form"
+                },
+                "IdEmployeeType": {
+                  "style": "form"
+                },
+                "BirthDate": {
+                  "style": "form"
+                },
+                "JoiningDate": {
+                  "style": "form"
+                },
+                "IdGender": {
+                  "style": "form"
+                },
+                "IdReligion": {
+                  "style": "form"
+                },
+                "IdDepartment": {
+                  "style": "form"
+                },
+                "IdSection": {
+                  "style": "form"
+                },
+                "IdDesignation": {
+                  "style": "form"
+                },
+                "HasOvertime": {
+                  "style": "form"
+                },
+                "HasAttendenceBonus": {
+                  "style": "form"
+                },
+                "IdWeekOff": {
+                  "style": "form"
+                },
+                "Address": {
+                  "style": "form"
+                },
+                "PresentAddress": {
+                  "style": "form"
+                },
+                "NationalIdentificationNumber": {
+                  "style": "form"
+                },
+                "ContactNo": {
+                  "style": "form"
+                },
+                "IdMaritalStatus": {
+                  "style": "form"
+                },
+                "IsActive": {
+                  "style": "form"
+                },
+                "SetDate": {
+                  "style": "form"
+                },
+                "CreatedBy": {
+                  "style": "form"
+                },
+                "EmployeeDocuments": {
+                  "style": "form"
+                },
+                "EmployeeEducationInfos": {
+                  "style": "form"
+                },
+                "EmployeeProfessionalCertifications": {
+                  "style": "form"
+                },
+                "EmpImg": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -706,7 +971,7 @@
         }
       }
     },
-    "/api/employee/deleteemployee": {
+    "/api/employee/deleteemployee/{idClient}/{id}": {
       "delete": {
         "tags": [
           "Employee"
@@ -714,7 +979,8 @@
         "parameters": [
           {
             "name": "idClient",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -722,7 +988,8 @@
           },
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -742,7 +1009,8 @@
         "parameters": [
           {
             "name": "idClient",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -750,7 +1018,8 @@
           },
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -767,157 +1036,6 @@
   },
   "components": {
     "schemas": {
-      "EmployeeDTO": {
-        "type": "object",
-        "properties": {
-          "idClient": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "employeeName": {
-            "type": "string",
-            "nullable": true
-          },
-          "employeeNameBangla": {
-            "type": "string",
-            "nullable": true
-          },
-          "fatherName": {
-            "type": "string",
-            "nullable": true
-          },
-          "motherName": {
-            "type": "string",
-            "nullable": true
-          },
-          "idReportingManager": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "idJobType": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "idEmployeeType": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "joiningDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "idGender": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "idReligion": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "idDepartment": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idSection": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idDesignation": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "hasOvertime": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "hasAttendenceBonus": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "idWeekOff": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "presentAddress": {
-            "type": "string",
-            "nullable": true
-          },
-          "nationalIdentificationNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactNo": {
-            "type": "string",
-            "nullable": true
-          },
-          "idMaritalStatus": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "setDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string",
-            "nullable": true
-          },
-          "employeeDocuments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EmployeeDocumentDTO"
-            },
-            "nullable": true
-          },
-          "employeeEducationInfos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EmployeeEducationInfoDTO"
-            },
-            "nullable": true
-          },
-          "employeeProfessionalCertifications": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EmployeeProfessionalCertificationDTO"
-            },
-            "nullable": true
-          },
-          "empImg": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "EmployeeDocumentDTO": {
         "type": "object",
         "properties": {

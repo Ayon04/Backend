@@ -21,49 +21,49 @@ namespace HanaHRM.Controllers
         }
 
        
-        int clientId = 10001001;
+       // int clientId = 10001001;
         [HttpGet("allemployees")]
-        public async Task<IActionResult> GetAllEmployees(CancellationToken ct)
+        public async Task<IActionResult> GetAllEmployees(int idClient, CancellationToken ct)
         {
             
-            var data = await _context.Employees.Where(e => e.IsActive == true && e.IdClient == clientId).ToListAsync(ct);
+            var data = await _context.Employees.Where(e => e.IsActive == true && e.IdClient == idClient).ToListAsync(ct);
             return Ok(data);
         }   
 
         [HttpGet("allemployeedocuments")]
-        public async Task<IActionResult> GetAllEmployeeDocuments(CancellationToken ct)
+        public async Task<IActionResult> GetAllEmployeeDocuments(int idClient, CancellationToken ct)
         {
-            var data = await _context.EmployeeDocuments.AsNoTracking().Where(e => e.IdClient == clientId).ToListAsync(ct);
+            var data = await _context.EmployeeDocuments.AsNoTracking().Where(e => e.IdClient == idClient).ToListAsync(ct);
             return Ok(data);
         }
         [HttpGet("allemployeeeducationinfo")]
-        public async Task<IActionResult> GetAllEmployeeEducationInfo(CancellationToken ct)
+        public async Task<IActionResult> GetAllEmployeeEducationInfo(int idClient, CancellationToken ct)
         {
-            var data = await _context.EmployeeEducationInfos.AsNoTracking().Where(e => e.IdClient == clientId).ToListAsync(ct);
+            var data = await _context.EmployeeEducationInfos.AsNoTracking().Where(e => e.IdClient == idClient).ToListAsync(ct);
             return Ok(data);
         }
         [HttpGet("allemployeefamilyinfo")]
-        public async Task<IActionResult> GetAllEmployeeFamilyInfo(CancellationToken ct)
+        public async Task<IActionResult> GetAllEmployeeFamilyInfo(int idClient, CancellationToken ct)
         {
-            var data = await _context.EmployeeFamilyInfos.AsNoTracking().Where(e => e.IdClient == clientId).ToListAsync(ct);
+            var data = await _context.EmployeeFamilyInfos.AsNoTracking().Where(e => e.IdClient == idClient).ToListAsync(ct);
             return Ok(data);
         }
 
         [HttpGet("allemployeeprofessionalcertifications")]
-        public async Task<IActionResult> GetAllEmployeeProfessionalCertifications(CancellationToken ct)
+        public async Task<IActionResult> GetAllEmployeeProfessionalCertifications(int idClient ,CancellationToken ct)
         {
-            var data = await _context.EmployeeProfessionalCertifications.AsNoTracking().Where(e => e.IdClient == clientId).ToListAsync(ct);
+            var data = await _context.EmployeeProfessionalCertifications.AsNoTracking().Where(e => e.IdClient == idClient).ToListAsync(ct);
             return Ok(data);
         }
 
         //GET APIS 
 
         [HttpGet("allemployeedetails")]
-        public async Task<IActionResult> GetAllEmployeeDetails(CancellationToken ct)
+        public async Task<IActionResult> GetAllEmployeeDetails([FromQuery] int idClient,CancellationToken ct)
         {
          
             var employees = await _context.Employees
-                .Where(e => e.IdClient == clientId)
+                .Where(e => e.IdClient == idClient)
                 .Include(e => e.EmployeeDocuments)
                 .Include(e => e.EmployeeEducationInfos)
                 .Include(e => e.EmployeeProfessionalCertifications)
@@ -157,7 +157,7 @@ namespace HanaHRM.Controllers
         {
 
             var employees = await _context.Employees
-                .Where(e => e.IdClient == clientId && e.Id == id)
+                .Where(e => e.IdClient == Idclient && e.Id == id)
                 .Include(e => e.EmployeeDocuments)
                 .Include(e => e.EmployeeEducationInfos)
                 .Include(e => e.EmployeeProfessionalCertifications)
