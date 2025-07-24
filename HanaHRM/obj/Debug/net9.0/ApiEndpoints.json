@@ -539,6 +539,27 @@
   },
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
+    "Method": "GetEmployeeImage",
+    "RelativePath": "api/employee/employeeimage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdClient",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "UpdateAsync",
     "RelativePath": "api/employee/updateemployee",
     "HttpMethod": "PUT",

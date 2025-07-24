@@ -17,7 +17,13 @@ namespace HanaHRM.Validation
 
             RuleFor(e => e.IdSection)
                 .NotEmpty().WithMessage("Section ID is required.");
-           
+
+            RuleFor(e => e.EmpImg)
+             
+             .Must(file => file.Length > 10 * 1024 * 1024)
+             .WithMessage("File Size Maximum 10 MB");
+
+
         }
     }
 }

@@ -378,8 +378,8 @@ namespace HanaHRM.Controllers
         }
 
 
-       /* [HttpGet("image/{IdClient}/{id}")]
-        public async Task<IActionResult> GetEmployeeImage(int IdClient,int id)
+        [HttpGet("employeeimage")]
+        public async Task<IActionResult> GetEmployeeImage([FromQuery]int IdClient,[FromQuery]int id)
         {
             var employee = await _context.Employees.FirstOrDefaultAsync(ed => ed.IdClient == IdClient && ed.Id == id);
 
@@ -389,7 +389,7 @@ namespace HanaHRM.Controllers
             var mimeType = GetMimeType(employee.EmployeeImage);
 
             return File(employee.EmployeeImage, mimeType);
-        }*/
+        }
 
         [HttpGet("employeedocument")]
         public async Task<IActionResult> GetEmployeeDocument([FromQuery] int IdClient, [FromQuery] int id)
