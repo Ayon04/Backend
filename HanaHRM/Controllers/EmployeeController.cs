@@ -28,7 +28,7 @@ namespace HanaHRM.Controllers
             
             var data = await _context.Employees.Where(e => e.IsActive == true && e.IdClient == clientId).ToListAsync(ct);
             return Ok(data);
-        }
+        }   
 
         [HttpGet("allemployeedocuments")]
         public async Task<IActionResult> GetAllEmployeeDocuments(CancellationToken ct)
@@ -152,8 +152,8 @@ namespace HanaHRM.Controllers
         }
 
 
-        [HttpGet("{Idclient}/{id}")]
-        public async Task<IActionResult> GetEmployeeById(int Idclient,int id ,CancellationToken ct)
+        [HttpGet("employeebyid")]
+        public async Task<IActionResult> GetEmployeeById([FromQuery] int Idclient,[FromQuery] int id ,CancellationToken ct)
         {
 
             var employees = await _context.Employees
@@ -248,7 +248,7 @@ namespace HanaHRM.Controllers
         }
 
 
-           [HttpPost("create")]
+           [HttpPost("createemployee")]
             public async Task<IActionResult> CreateEmployee([FromForm] EmployeeDTO empDto, CancellationToken ct)
             {
             async Task<byte[]?> ConvertFileToByteArrayAsync(IFormFile? file)
@@ -392,8 +392,8 @@ namespace HanaHRM.Controllers
             return File(employee.EmployeeImage, mimeType);
         }*/
 
-        [HttpGet("document/{IdClient}/{id}")]
-        public async Task<IActionResult> GetEmployeeDocument(int IdClient, int id)
+        [HttpGet("employeedocument")]
+        public async Task<IActionResult> GetEmployeeDocument([FromQuery] int IdClient, [FromQuery] int id)
         {
             var employeeDocumnet = await _context.EmployeeDocuments.FirstOrDefaultAsync(ed => ed.IdClient == IdClient && ed.IdEmployee == id);
 
@@ -406,8 +406,8 @@ namespace HanaHRM.Controllers
         }
 
 
-        [HttpPut("update/{idClient}/{id}")]
-        public async Task<int> UpdateAsync([FromBody] EmployeeDTO employee, int idClient, int id ,CancellationToken cancellationToken)
+        [HttpPut("updateemployee")]
+        public async Task<int> UpdateAsync([FromForm] EmployeeDTO employee, int idClient, int id ,CancellationToken cancellationToken)
         {
             if (employee == null)
                 throw new Exception($"data not found: {nameof(employee)}");
@@ -573,8 +573,8 @@ namespace HanaHRM.Controllers
         }
 
 
-        [HttpDelete("delete/{idClient}/{id}")]
-        public async Task<IActionResult> DeleteEmployee(int idClient, int id ,CancellationToken ct)
+        [HttpDelete("deleteemployee/{idClient}/{id}")]
+        public async Task<IActionResult> DeleteEmployee([FromRoute] int idClient, [FromRoute] int id ,CancellationToken ct)
         {
             var empToDelete =await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id,ct);
 
@@ -590,8 +590,8 @@ namespace HanaHRM.Controllers
         }
 
         //Soft Delete using boolian flag (IsActive)
-        [HttpPatch("delete/{idClient}/{id}")]
-        public async Task<IActionResult> HideEmployee(int idClient, int id,CancellationToken ct)
+        [HttpPatch("deleteemployee/{idClient}/{id}")]
+        public async Task<IActionResult> HideEmployee([FromRoute] int idClient, [FromRoute] int id,CancellationToken ct)
         {
             var empToHide = await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id, ct);
             if (empToHide == null)

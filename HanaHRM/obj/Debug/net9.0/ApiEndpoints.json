@@ -193,27 +193,6 @@
   },
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
-    "Method": "GetEmployeeById",
-    "RelativePath": "api/employee/{Idclient}/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Idclient",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetAllEmployeeDetails",
     "RelativePath": "api/employee/allemployeedetails",
     "HttpMethod": "GET",
@@ -275,7 +254,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "CreateEmployee",
-    "RelativePath": "api/employee/create",
+    "RelativePath": "api/employee/createemployee",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -441,7 +420,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "DeleteEmployee",
-    "RelativePath": "api/employee/delete/{idClient}/{id}",
+    "RelativePath": "api/employee/deleteemployee",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -449,12 +428,12 @@
       {
         "Name": "idClient",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -462,7 +441,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "HideEmployee",
-    "RelativePath": "api/employee/delete/{idClient}/{id}",
+    "RelativePath": "api/employee/deleteemployee",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -470,12 +449,33 @@
       {
         "Name": "idClient",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HanaHRM.Controllers.EmployeeController",
+    "Method": "GetEmployeeById",
+    "RelativePath": "api/employee/employeebyid",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Idclient",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -483,7 +483,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "GetEmployeeDocument",
-    "RelativePath": "api/employee/document/{IdClient}/{id}",
+    "RelativePath": "api/employee/employeedocument",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -491,33 +491,12 @@
       {
         "Name": "IdClient",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HanaHRM.Controllers.EmployeeController",
-    "Method": "GetEmployeeImage",
-    "RelativePath": "api/employee/image/{IdClient}/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "IdClient",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -525,7 +504,7 @@
   {
     "ContainingType": "HanaHRM.Controllers.EmployeeController",
     "Method": "UpdateAsync",
-    "RelativePath": "api/employee/update/{idClient}/{id}",
+    "RelativePath": "api/employee/updateemployee",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -538,12 +517,12 @@
       {
         "Name": "idClient",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

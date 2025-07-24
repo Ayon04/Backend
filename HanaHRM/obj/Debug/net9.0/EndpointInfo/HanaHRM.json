@@ -341,7 +341,7 @@
         }
       }
     },
-    "/api/employee/{Idclient}/{id}": {
+    "/api/employee/employeebyid": {
       "get": {
         "tags": [
           "Employee"
@@ -349,8 +349,7 @@
         "parameters": [
           {
             "name": "Idclient",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -358,8 +357,7 @@
           },
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -373,7 +371,7 @@
         }
       }
     },
-    "/api/employee/create": {
+    "/api/employee/createemployee": {
       "post": {
         "tags": [
           "Employee"
@@ -609,7 +607,7 @@
         }
       }
     },
-    "/api/employee/image/{IdClient}/{id}": {
+    "/api/employee/employeedocument": {
       "get": {
         "tags": [
           "Employee"
@@ -617,8 +615,7 @@
         "parameters": [
           {
             "name": "IdClient",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -626,8 +623,7 @@
           },
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -641,39 +637,7 @@
         }
       }
     },
-    "/api/employee/document/{IdClient}/{id}": {
-      "get": {
-        "tags": [
-          "Employee"
-        ],
-        "parameters": [
-          {
-            "name": "IdClient",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/employee/update/{idClient}/{id}": {
+    "/api/employee/updateemployee": {
       "put": {
         "tags": [
           "Employee"
@@ -681,8 +645,7 @@
         "parameters": [
           {
             "name": "idClient",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -690,8 +653,7 @@
           },
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -744,7 +706,7 @@
         }
       }
     },
-    "/api/employee/delete/{idClient}/{id}": {
+    "/api/employee/deleteemployee": {
       "delete": {
         "tags": [
           "Employee"
@@ -752,8 +714,7 @@
         "parameters": [
           {
             "name": "idClient",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -761,8 +722,7 @@
           },
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -782,8 +742,7 @@
         "parameters": [
           {
             "name": "idClient",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -791,8 +750,7 @@
           },
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
