@@ -25,7 +25,7 @@ namespace HanaHRM.Controllers
         public async Task<IActionResult> GetAllEmployees(int idClient, CancellationToken ct)
         {
             
-            var data = await _context.Employees.Where(e => e.IsActive == true && e.IdClient == idClient).ToListAsync(ct);
+            var data = await _context.Employees.AsNoTracking().Where(e => e.IsActive == true && e.IdClient == idClient).ToListAsync(ct);
             return Ok(data);
         }   
 

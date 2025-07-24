@@ -20,7 +20,7 @@ namespace HanaHRM.Validation
 
             RuleFor(e => e.EmpImg)
              
-             .Must(file => file.Length > 10 * 1024 * 1024)
+             .Must(file => file.Length <= 10 * 1024 * 1024)
              .WithMessage("File Size Can be Maximum 10 MB")
              .Must(file =>
               {
