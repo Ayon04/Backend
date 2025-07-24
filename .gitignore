@@ -1,54 +1,93 @@
-########################################
-# Visual Studio
-########################################
-.vs/
-*.user
-*.suo
+## Ignore Visual Studio temporary files, build results, and
+## user-specific files
 
-########################################
-# Build Results
-########################################
-bin/
-obj/
-[Bb]uild/
+# Build results
+[Bb]in/
+[Oo]bj/
 [Ll]og/
 *.log
 
-########################################
-# NuGet
-########################################
-*.nupkg
-packages/
-project.lock.json
-project.assets.json
+# Visual Studio specific folders
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
 
-########################################
-# ASP.NET / Web Projects
-########################################
-wwwroot/
-appsettings.json
-Program.cs
-appsettings.Development.json
-
-########################################
-# Rider (if using JetBrains)
-########################################
+# Rider project files
 .idea/
 
-########################################
-# Others
-########################################
-*.db
-*.bak
-*.sqlite
-*.mdf
-*.ldf
-*.vsidx
-*.cache
-*.tmp
-*.pid
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
 
-# Ignore Mac/Windows system files
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+packages/
+*.snupkg
+# Uncomment if using the new .NET SDK-style projects
+# .nuget/
+
+# NPM & Node (if using front-end)
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Coverage reports
+*.coverage
+*.coveragexml
+TestResults/
+coverage/
+
+# Configuration
+appsettings.*.json
+secrets.json
+
+# Publish output
+publish/
+*.Publish.xml
+
+# GitHub Copilot
+/copilot.json
+
+# Logs and crashes
+*.pid
+*.dump
+
+# Environment and IDE backups
+*.swp
+*.bak
+*.tmp
+
+# Local tools and workloads
+.local/
+dotnet-tools.json
+
+# OS-specific files
 .DS_Store
 Thumbs.db
-ehthumbs.db
+
+# Python or scripting extras (if mixed)
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints/
+
+# Ignore database files
+*.mdf
+*.ldf
+
+# Docker artifacts
+docker-compose.override.yml
+.env
+
+# Optional: ignore compiled views
+**/obj/**/*.cshtml.cs
+
+# Optional: ignore test screenshots or video outputs
+*.png
+*.mp4
+*.webm
