@@ -69,6 +69,7 @@ namespace HanaHRM.DTO
         public List<EmployeeEducationInfoDTO> EmployeeEducationInfos { get; set; } = [];
 
         public List<EmployeeProfessionalCertificationDTO> EmployeeProfessionalCertifications { get; set; } = [];
+        public List<EmployeeFamilyInfoDTO> EmployeeFamilyInfos { get; set; } = [];
 
         public IFormFile? EmpImg { get; set; }
 

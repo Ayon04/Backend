@@ -7,7 +7,7 @@ namespace HanaHRM.Validation
 
         public EmployeeDTOValidator() {
 
-            RuleFor(e => e.EmployeeName)
+           /* RuleFor(e => e.EmployeeName)
                 .NotEmpty().WithMessage("Name is required.")
                 .Matches("^[a-zA-Z .]*$")
                 .WithMessage("Employee name must not contain special characters and Numbers.");
@@ -28,7 +28,7 @@ namespace HanaHRM.Validation
                   var fileExtension = Path.GetExtension(file.FileName)?.ToLowerInvariant();
                   return allowedExtensions.Contains(fileExtension);
                       })
-            .WithMessage("Only PDF, PNG, JPG, JPEG, and GIF file types are allowed.");
+            .WithMessage("Only PDF, PNG, JPG, JPEG, and GIF file types are allowed.");*/
 
         }
     }

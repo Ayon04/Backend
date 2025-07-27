@@ -96,6 +96,9 @@ public partial class Employee
     [InverseProperty("Employee")]
     public virtual ICollection<EmployeeProfessionalCertification> EmployeeProfessionalCertifications { get; set; } = new List<EmployeeProfessionalCertification>();
 
+    [InverseProperty("Employee")]
+    public virtual ICollection<EmployeeFamilyInfo> EmployeeFamilyInfos { get; set; } = new List<EmployeeFamilyInfo>();
+
     [ForeignKey("IdClient, IdEmployeeType")]
     [InverseProperty("Employees")]
     public virtual EmployeeType? EmployeeType { get; set; }

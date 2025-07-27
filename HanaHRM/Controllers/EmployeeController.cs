@@ -83,7 +83,23 @@ namespace HanaHRM.Controllers
                     ResultName = edu.EducationResult.ResultName ?? "",
                 }).ToList(),
 
-                EmployeeProfessionalCertifications = ed.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertificationDTO
+                    EmployeeFamilyInfos = ed.EmployeeFamilyInfos.Select(cert => new EmployeeFamilyInfoDTO
+                    {
+                        IdClient = cert.IdClient,
+                        Id = cert.Id,
+                        Name = cert.Name,
+                        IdGender = cert.IdGender,
+                        IdRelationship = cert.IdRelationship,
+                        DateOfBirth = cert.DateOfBirth,
+                        ContactNo = cert.ContactNo,
+                        CurrentAddress = cert.CurrentAddress,
+                        PermanentAddress = cert.PermanentAddress,
+                        SetDate = DateTime.Now,
+
+                    }).ToList(),
+
+
+                    EmployeeProfessionalCertifications = ed.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertificationDTO
                 {
                     IdClient = cert.IdClient,
                     Id = cert.Id,
@@ -171,7 +187,22 @@ namespace HanaHRM.Controllers
                     ResultName = edu.EducationResult.ResultName ?? "",
                 }).ToList(),
 
-                EmployeeProfessionalCertifications = ed.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertificationDTO
+                    EmployeeFamilyInfos = ed.EmployeeFamilyInfos.Select(cert => new EmployeeFamilyInfoDTO
+                    {
+                        IdClient = cert.IdClient,
+                        Id = cert.Id,
+                        Name = cert.Name,
+                        IdGender = cert.IdGender,
+                        IdRelationship = cert.IdRelationship,
+                        DateOfBirth = cert.DateOfBirth,
+                        ContactNo = cert.ContactNo,
+                        CurrentAddress = cert.CurrentAddress,
+                        PermanentAddress = cert.PermanentAddress,
+                        SetDate = DateTime.Now,
+
+                    }).ToList(),
+
+                    EmployeeProfessionalCertifications = ed.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertificationDTO
                 {
                     IdClient = cert.IdClient,
                     Id = cert.Id,
@@ -256,16 +287,32 @@ namespace HanaHRM.Controllers
                 {
                     IdClient = cert.IdClient,
                     CertificationTitle = cert.CertificationTitle,
-                    CertificationInstitute = cert.CertificationInstitute,
+                    CertificationInstitute = cert.CertificationInstitute, 
                     InstituteLocation = cert.InstituteLocation,
                     FromDate = cert.FromDate,
                     ToDate = cert.ToDate,
                     SetDate = DateTime.Now
                 }).ToList(),
+
+                EmployeeFamilyInfos = empDto.EmployeeFamilyInfos.Select(cert => new EmployeeFamilyInfo
+                {
+                    IdClient = cert.IdClient,
+                    Name = cert.Name,
+                    IdGender = cert.IdGender,
+                    IdRelationship = cert.IdRelationship,
+                    DateOfBirth = cert.DateOfBirth,
+                    ContactNo = cert.ContactNo,
+                    CurrentAddress = cert.CurrentAddress,
+                    PermanentAddress = cert.PermanentAddress,
+                    SetDate = DateTime.Now,
+
+                }).ToList(),
+
+
             };
 
 
-            foreach (var doc in empDto.EmployeeDocuments)
+           foreach (var doc in empDto.EmployeeDocuments)
             {
                 var uploadedBytes = await ConvertFileToByteArrayAsync(doc.DocumentFile);
                 var extension = Path.GetExtension(doc.DocumentFile?.FileName);
@@ -280,7 +327,6 @@ namespace HanaHRM.Controllers
                     SetDate = DateTime.Now
                 });
             }
-
             await _context.Employees.AddAsync(emp, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
             return Ok(new { message = "Employee created successfully!", emp.Id });
@@ -500,6 +546,35 @@ namespace HanaHRM.Controllers
                     existingEmployee.EmployeeProfessionalCertifications.Add(newCertification);
                 }
             }
+
+          /*  foreach (var item in employee.EmployeeFamilyInfos)
+            {
+                var existingEntry = existingEmployee.EmployeeFamilyInfos.FirstOrDefault(ei => ei.IdClient == item.IdClient && ei.Id == item.Id);
+                if (existingEntry != null)
+                {
+                    existingEntry. = item.;
+                    existingEntry. = item.;
+                    existingEntry. = item.;
+                    existingEntry. = item.;
+                    existingEntry. = item.;
+                    existingEntry.SetDate = DateTime.Now;
+                }
+                else
+                {
+                    var newCertification = new EmployeeProfessionalCertification
+                    {
+                        IdClient = item.IdClient,
+                        IdEmployee = existingEmployee.Id,
+                        CertificationTitle = item.,
+                        CertificationInstitute = item.,
+                        InstituteLocation = item.,
+                        FromDate = item.,
+                        ToDate = item.,
+                        SetDate = DateTime.Now
+                    };
+                    existingEmployee.EmployeeProfessionalCertifications.Add(newCertification);
+                }
+            }*/
 
             var result = await _context.SaveChangesAsync();
 

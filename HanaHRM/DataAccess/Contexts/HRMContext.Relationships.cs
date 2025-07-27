@@ -107,6 +107,11 @@ public partial class HRMContext
             entity.Property(e => e.IdClient).HasDefaultValue(10001001);
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
+            entity.HasOne(d => d.Employee).WithMany(p => p.EmployeeFamilyInfos)
+                  .HasForeignKey(d => new { d.IdClient, d.IdEmployee })
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_EmployeeFamilyInfo_Employee");
+
             entity.HasOne(d => d.Gender).WithMany(p => p.EmployeeFamilyInfos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_EmployeeFamilyInfo_Gender");

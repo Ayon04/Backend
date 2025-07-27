@@ -10,6 +10,12 @@ namespace HanaHRM.DataAccess.Models.Configurations
             builder.Property(e => e.IdClient).HasDefaultValue(10001001);
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
 
+
+            builder.HasOne(d => d.Employee).WithMany(p => p.EmployeeFamilyInfos)
+           .HasForeignKey(d => new { d.IdClient, d.IdEmployee })
+           .OnDelete(DeleteBehavior.ClientSetNull)
+           .HasConstraintName("FK_EmployeeFamilyInfo_Employee");
+
             builder.HasOne(d => d.Gender)
                 .WithMany(p => p.EmployeeFamilyInfos)
                 .OnDelete(DeleteBehavior.ClientSetNull)

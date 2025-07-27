@@ -50,5 +50,7 @@ public partial class EmployeeFamilyInfo
     [InverseProperty("EmployeeFamilyInfos")]
     //public virtual Relationship Relationship { get; set; } = null!;
     public virtual Relationship ? Relationship { get; set; }
+    public virtual Employee Employee { get; set; } = null!;
+
 
 }
