@@ -547,34 +547,33 @@ namespace HanaHRM.Controllers
                 }
             }
 
-          /*  foreach (var item in employee.EmployeeFamilyInfos)
+            foreach (var item in employee.EmployeeFamilyInfos)
             {
                 var existingEntry = existingEmployee.EmployeeFamilyInfos.FirstOrDefault(ei => ei.IdClient == item.IdClient && ei.Id == item.Id);
                 if (existingEntry != null)
                 {
-                    existingEntry. = item.;
-                    existingEntry. = item.;
-                    existingEntry. = item.;
-                    existingEntry. = item.;
-                    existingEntry. = item.;
+                    existingEntry.Name = item.Name;
+                    existingEntry.IdGender = item.IdGender;
+                    existingEntry.IdRelationship = item.IdRelationship;
                     existingEntry.SetDate = DateTime.Now;
+
+
                 }
                 else
                 {
-                    var newCertification = new EmployeeProfessionalCertification
+                    var familyinfos = new EmployeeFamilyInfo
                     {
                         IdClient = item.IdClient,
                         IdEmployee = existingEmployee.Id,
-                        CertificationTitle = item.,
-                        CertificationInstitute = item.,
-                        InstituteLocation = item.,
-                        FromDate = item.,
-                        ToDate = item.,
+                        Name = item.Name,
+                        IdGender = item.IdGender,
+                        IdRelationship = item.IdRelationship,
+
                         SetDate = DateTime.Now
                     };
-                    existingEmployee.EmployeeProfessionalCertifications.Add(newCertification);
+                    existingEmployee.EmployeeFamilyInfos.Add(familyinfos);
                 }
-            }*/
+            }
 
             var result = await _context.SaveChangesAsync();
 
