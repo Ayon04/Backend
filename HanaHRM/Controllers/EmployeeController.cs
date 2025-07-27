@@ -2,6 +2,7 @@
 using HanaHRM.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Sockets;
@@ -11,60 +12,16 @@ namespace HanaHRM.Controllers
 {
     [Route("api/employee")]
     [ApiController]
-    public class EmployeeController(HRMDbContext _context) : ControllerBase
+    public class EmployeeController(HRMContext _context) : ControllerBase
     {
-       
-      
-        [HttpGet("allemployees")]
-        public async Task<IActionResult> GetAllEmployees(int idClient, CancellationToken ct)
+        [HttpGet]
+        public async Task<IActionResult> GetAllEmployeeDetails([FromQuery] int idClient,CancellationToken cancellationToken)
         {
-            
-            var data = await _context.Employees.AsNoTracking().Where(e => e.IsActive == true && e.IdClient == idClient).ToListAsync(ct);
-            return Ok(data);
-        }   
-
-        [HttpGet("allemployeedocuments")]
-        public async Task<IActionResult> GetAllEmployeeDocuments(int idClient, CancellationToken ct)
-        {
-            var data = await _context.EmployeeDocuments.AsNoTracking().Where(e => e.IdClient == idClient).ToListAsync(ct);
-            return Ok(data);
-        }
-        [HttpGet("allemployeeeducationinfo")]
-        public async Task<IActionResult> GetAllEmployeeEducationInfo(int idClient, CancellationToken ct)
-        {
-            var data = await _context.EmployeeEducationInfos.AsNoTracking().Where(e => e.IdClient == idClient).ToListAsync(ct);
-            return Ok(data);
-        }
-        [HttpGet("allemployeefamilyinfo")]
-        public async Task<IActionResult> GetAllEmployeeFamilyInfo(int idClient, CancellationToken ct)
-        {
-            var data = await _context.EmployeeFamilyInfos.AsNoTracking().Where(e => e.IdClient == idClient).ToListAsync(ct);
-            return Ok(data);
-        }
-
-        [HttpGet("allemployeeprofessionalcertifications")]
-        public async Task<IActionResult> GetAllEmployeeProfessionalCertifications(int idClient ,CancellationToken ct)
-        {
-            var data = await _context.EmployeeProfessionalCertifications.AsNoTracking().Where(e => e.IdClient == idClient).ToListAsync(ct);
-            return Ok(data);
-        }
-
-        //GET APIS 
-
-        [HttpGet("allemployeedetails")]
-        public async Task<IActionResult> GetAllEmployeeDetails([FromQuery] int idClient,CancellationToken ct)
-        {
-         
-            var employees = await _context.Employees
-                .Where(e => e.IdClient == idClient)
-                .Include(e => e.EmployeeDocuments)
-                .Include(e => e.EmployeeEducationInfos)
-                .Include(e => e.EmployeeProfessionalCertifications)
+            var employeeDTOs = await _context.Employees
                 .AsNoTracking()
-                .ToListAsync(ct);
-
-            var employeeDTOs = employees.Select(ed => new EmployeeDTO
-            {
+                .Where(e => e.IdClient == idClient && e.IsActive == true)
+                .Select(ed => new EmployeeDTO
+                {
                 Id = ed.Id,
                 EmployeeName = ed.EmployeeName ?? "",
                 EmployeeNameBangla = ed.EmployeeNameBangla ?? "",
@@ -121,9 +78,9 @@ namespace HanaHRM.Controllers
                     Achievement = edu.Achievement,
                     SetDate = edu.SetDate,
                     CreatedBy = edu.CreatedBy,
-                    EducationLevelName = edu.EducationLevel?.EducationLevelName ?? "",
-                    ExaminationName = edu.EducationExamination?.ExamName ?? "",
-                    ResultName = edu.EducationResult?.ResultName ?? "",
+                    EducationLevelName = edu.EducationLevel.EducationLevelName ?? "",
+                    ExaminationName = edu.EducationExamination.ExamName ?? "",
+                    ResultName = edu.EducationResult.ResultName ?? "",
                 }).ToList(),
 
                 EmployeeProfessionalCertifications = ed.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertificationDTO
@@ -139,25 +96,19 @@ namespace HanaHRM.Controllers
                     SetDate = cert.SetDate ?? null,
                     CreatedBy = cert.CreatedBy ?? null,
                 }).ToList()
-            }).ToList();
+            }).ToListAsync();
 
             return Ok(employeeDTOs);
         }
 
 
-        [HttpGet("employeebyid")]
-        public async Task<IActionResult> GetEmployeeById([FromQuery] int Idclient,[FromQuery] int id ,CancellationToken ct)
+        [HttpGet("getemployeebyid")]
+        public async Task<IActionResult> GetEmployeeById([FromQuery] int Idclient,[FromQuery] int id ,CancellationToken cancellationToken)
         {
-
-            var employees = await _context.Employees
+            var employeeDTOs = await _context.Employees
+                .AsNoTracking()
                 .Where(e => e.IdClient == Idclient && e.Id == id)
-                .Include(e => e.EmployeeDocuments)
-                .Include(e => e.EmployeeEducationInfos)
-                .Include(e => e.EmployeeProfessionalCertifications)
-                .AsNoTracking()
-                .ToListAsync(ct);
-
-            var employeeDTOs = employees.Select(ed => new EmployeeDTO
+                .Select(ed => new EmployeeDTO
             {
                 Id = ed.Id,
                 EmployeeName = ed.EmployeeName ?? "",
@@ -215,9 +166,9 @@ namespace HanaHRM.Controllers
                     Achievement = edu.Achievement,
                     SetDate = edu.SetDate,
                     CreatedBy = edu.CreatedBy,
-                    EducationLevelName = edu.EducationLevel?.EducationLevelName ?? "",
-                    ExaminationName = edu.EducationExamination?.ExamName ?? "",
-                    ResultName = edu.EducationResult?.ResultName ?? "",
+                    EducationLevelName = edu.EducationLevel.EducationLevelName ?? "",
+                    ExaminationName = edu.EducationExamination.ExamName ?? "",
+                    ResultName = edu.EducationResult.ResultName ?? "",
                 }).ToList(),
 
                 EmployeeProfessionalCertifications = ed.EmployeeProfessionalCertifications.Select(cert => new EmployeeProfessionalCertificationDTO
@@ -233,33 +184,28 @@ namespace HanaHRM.Controllers
                     SetDate = cert.SetDate ?? null,
                     CreatedBy = cert.CreatedBy ?? null,
                 }).ToList()
-            }).ToList();
-
-
-
+            }).ToListAsync(cancellationToken);
             return Ok(employeeDTOs);
         }
 
+        private async Task<byte[]?> ConvertFileToByteArrayAsync(IFormFile? file)
+        {
+            if (file == null || file.Length == 0)
 
-           [HttpPost("createemployee")]
-            public async Task<IActionResult> CreateEmployee([FromForm] EmployeeDTO empDto, CancellationToken ct)
-            {
-            async Task<byte[]?> ConvertFileToByteArrayAsync(IFormFile? file)
+                return null;
 
-            {
+            using var memoryStream = new MemoryStream();
 
-                if (file == null || file.Length == 0)
+            await file.CopyToAsync(memoryStream);
 
-                    return null;
+            return memoryStream.ToArray();
 
-                using var memoryStream = new MemoryStream();
+        }
 
-                await file.CopyToAsync(memoryStream);
-
-                return memoryStream.ToArray();
-
-            }
-
+        [HttpPost]
+        public async Task<IActionResult> CreateEmployee([FromForm] EmployeeDTO empDto, CancellationToken cancellationToken)
+        {
+          
             var emp = new Employee
             {
                     EmployeeName = empDto.EmployeeName ,
@@ -335,8 +281,8 @@ namespace HanaHRM.Controllers
                 });
             }
 
-            await _context.Employees.AddAsync(emp, ct);
-            await _context.SaveChangesAsync(ct);
+            await _context.Employees.AddAsync(emp, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
             return Ok(new { message = "Employee created successfully!", emp.Id });
             }
 
@@ -393,13 +339,14 @@ namespace HanaHRM.Controllers
         }
 
 
-        [HttpPut("updateemployee")]
-        public async Task<int> UpdateAsync([FromForm] EmployeeDTO employee, int idClient, int id ,CancellationToken cancellationToken)
+        [HttpPut]
+        public async Task<int> UpdateAsync([FromForm] EmployeeDTO employee,CancellationToken cancellationToken)
         {
             if (employee == null)
                 throw new Exception($"data not found: {nameof(employee)}");
 
-       
+            var idClient = employee.IdClient;
+            var id = employee.Id;
 
             var existingEmployee = await _context.Employees
                 .Include(e => e.EmployeeDocuments)
@@ -427,27 +374,27 @@ namespace HanaHRM.Controllers
             //delete obsolete data
 
             var deletedEmployeeDocumentList = existingEmployee.EmployeeDocuments
-                .Where(ed => ed.IdClient == ed.IdClient && !employee.EmployeeDocuments.Any(d => d.IdClient == ed.IdClient && d.Id == ed.Id))
+                .Where(ed => ed.IdClient == idClient && !employee.EmployeeDocuments.Any(d => d.IdClient == ed.IdClient && d.Id == ed.Id))
                 .ToList();
-            if (deletedEmployeeDocumentList != null)
+            if (deletedEmployeeDocumentList.Any())
             {
                 _context.EmployeeDocuments.RemoveRange(deletedEmployeeDocumentList);
             }
 
 
             var deletedEmployeeEducationInfoList = existingEmployee.EmployeeEducationInfos
-                .Where(eei => eei.IdClient == eei.IdClient && !employee.EmployeeEducationInfos.Any(ei => ei.IdClient == eei.IdClient && ei.Id == eei.Id))
+                .Where(eei => eei.IdClient ==idClient && !employee.EmployeeEducationInfos.Any(ei => ei.IdClient == eei.IdClient && ei.Id == eei.Id))
                 .ToList();
-            if (deletedEmployeeEducationInfoList != null)
+            if (deletedEmployeeEducationInfoList.Any())
             {
                 _context.EmployeeEducationInfos.RemoveRange(deletedEmployeeEducationInfoList);
             }
 
             var deletedCertificationList = existingEmployee.EmployeeProfessionalCertifications
-                .Where(epc => epc.IdClient == epc.IdClient && !employee.EmployeeProfessionalCertifications.Any(c => c.IdClient == epc.IdClient && c.Id == epc.Id))
+                .Where(epc => epc.IdClient == idClient && !employee.EmployeeProfessionalCertifications.Any(c => c.IdClient == epc.IdClient && c.Id == epc.Id))
                 .ToList();
 
-            if (deletedCertificationList != null)
+            if (deletedCertificationList.Any())
             {
                 _context.EmployeeProfessionalCertifications.RemoveRange(deletedCertificationList);
             }
@@ -560,27 +507,10 @@ namespace HanaHRM.Controllers
         }
 
 
-        [HttpDelete("deleteemployee/{idClient}/{id}")]
-        public async Task<IActionResult> DeleteEmployee([FromRoute] int idClient, [FromRoute] int id ,CancellationToken ct)
+        [HttpPatch("{idClient}/{id}")]
+        public async Task<IActionResult> HideEmployee([FromRoute] int idClient, [FromRoute] int id,CancellationToken cancellationToken)
         {
-            var empToDelete =await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id,ct);
-
-            if (empToDelete == null)
-            {
-                return NotFound(new { error = "Employee not found!\n Nothing to Delete" });
-            }
-
-            _context.Employees.Remove(empToDelete);
-            _context.SaveChanges();
-
-            return Ok(new { message = "Data deleted successfully" });
-        }
-
-        //Soft Delete using boolian flag (IsActive)
-        [HttpPatch("deleteemployee/{idClient}/{id}")]
-        public async Task<IActionResult> HideEmployee([FromRoute] int idClient, [FromRoute] int id,CancellationToken ct)
-        {
-            var empToHide = await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id, ct);
+            var empToHide = await _context.Employees.FirstOrDefaultAsync(e => e.IdClient == idClient && e.Id == id, cancellationToken);
             if (empToHide == null)
             {
                 return NotFound(new { error = "Employee not found!" });
@@ -589,9 +519,9 @@ namespace HanaHRM.Controllers
 
             empToHide.IsActive = false;
 
-            _context.SaveChanges();
+             await _context.SaveChangesAsync(cancellationToken);
 
-            return Ok(new { message = "Data Deleted/Hide successfully" });
+            return Ok(new { message = "Data Deleted successfully" });
         }
 
     }

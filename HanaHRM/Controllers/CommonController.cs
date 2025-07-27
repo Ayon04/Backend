@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HanaHRM.Controllers
 {
-    [Route("api/Common")]
+    [Route("api/common")]
     [ApiController]
     public class CommonController : ControllerBase
     {
-        private readonly HRMDbContext _context;
+        private readonly HRMContext _context;
 
-        public CommonController(HRMDbContext context)
+        public CommonController(HRMContext context)
         { 
             _context = context;
         }

@@ -1,62 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace HanaHRM.DataAccess.Models;
 
-public partial class HRMDbContext : DbContext
+public partial class HRMContext
 {
-    public HRMDbContext()
-    {
-    }
-
-    public HRMDbContext(DbContextOptions<HRMDbContext> options)
-     
-        : base(options)
-    {
-    }
-
-    public virtual DbSet<Department> Departments { get; set; }
-
-    public virtual DbSet<Designation> Designations { get; set; }
-
-    public virtual DbSet<EducationExamination> EducationExaminations { get; set; }
-
-    public virtual DbSet<EducationLevel> EducationLevels { get; set; }
-
-    public virtual DbSet<EducationResult> EducationResults { get; set; }
-
-    public virtual DbSet<Employee> Employees { get; set; }
-
-    public virtual DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
-
-    public virtual DbSet<EmployeeEducationInfo> EmployeeEducationInfos { get; set; }
-
-    public virtual DbSet<EmployeeFamilyInfo> EmployeeFamilyInfos { get; set; }
-
-    public virtual DbSet<EmployeeProfessionalCertification> EmployeeProfessionalCertifications { get; set; }
-
-    public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
-
-    public virtual DbSet<Gender> Genders { get; set; }
-
-    public virtual DbSet<JobType> JobTypes { get; set; }
-
-    public virtual DbSet<MaritalStatus> MaritalStatuses { get; set; }
-
-    public virtual DbSet<Relationship> Relationships { get; set; }
-
-    public virtual DbSet<Religion> Religions { get; set; }
-
-    public virtual DbSet<Section> Sections { get; set; }
-
-    public virtual DbSet<WeekOff> WeekOffs { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=192.168.70.89;Database=HANA-HRM;User Id=SA;Password=Sa@123456;TrustServerCertificate=True;");
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder) 
+    private void RelationShipsMapping(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Department>(entity =>
         {
@@ -227,8 +175,5 @@ public partial class HRMDbContext : DbContext
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
         });
 
-        OnModelCreatingPartial(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
