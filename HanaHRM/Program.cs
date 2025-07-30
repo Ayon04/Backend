@@ -34,6 +34,19 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "HANA HRM System APIs", Version = "v1" });
 });
+builder.Services.AddCors(options =>
+
+{
+
+    options.AddPolicy("AllowAngularDev",
+
+        builder => builder.WithOrigins("http://localhost:4200")
+
+                          .AllowAnyMethod()
+
+                          .AllowAnyHeader());
+
+});
 
 var app = builder.Build();
 
@@ -43,9 +56,9 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
     c.RoutePrefix = "";
 });
-
+app.UseStaticFiles();
 app.UseHttpsRedirection();
-
+app.UseCors("AllowAngularDev");
 app.UseAuthorization();
 
 app.MapControllers();

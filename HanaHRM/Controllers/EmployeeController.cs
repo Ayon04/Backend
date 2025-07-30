@@ -1,5 +1,6 @@
 ﻿using HanaHRM.DataAccess.Models;
 using HanaHRM.DTO;
+using HanaHRM.ListDTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -15,7 +16,23 @@ namespace HanaHRM.Controllers
     public class EmployeeController(HRMContext _context) : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetAllEmployeeDetails([FromQuery] int idClient,CancellationToken cancellationToken)
+
+        public async Task<IActionResult> GetEmployeeList([FromQuery] int idClient, CancellationToken cancellationToken) { 
+                 
+            var empList = await _context.Employees
+                .AsNoTracking()
+                .Where(e => e.IdClient == idClient && e.IsActive == true)
+                .Select(ed => new EmployeeListDTO {
+                    Id = ed.Id,
+                    EmployeeName = ed.EmployeeName ?? "",
+                    Designation = ed.Designation.DesignationName ?? "",
+                }).ToListAsync();
+
+            return Ok(empList);
+
+        }
+
+        /*public async Task<IActionResult> GetAllEmployeeDetails([FromQuery] int idClient,CancellationToken cancellationToken)
         {
             var employeeDTOs = await _context.Employees
                 .AsNoTracking()
@@ -46,6 +63,8 @@ namespace HanaHRM.Controllers
                 ContactNo = ed.ContactNo ?? "",
                 IdMaritalStatus = ed.IdMaritalStatus ?? null,
                 CreatedBy = ed.CreatedBy ?? "",
+                DepartmentName = ed.Department.DepartName ?? "",
+                Designation = ed.Designation.DesignationName ?? "",
                 EmployeeDocuments = ed.EmployeeDocuments.Select(d => new EmployeeDocumentDTO
                 {
                     IdClient = d.IdClient,
@@ -116,7 +135,7 @@ namespace HanaHRM.Controllers
 
             return Ok(employeeDTOs);
         }
-
+*/
 
         [HttpGet("getemployeebyid")]
         public async Task<IActionResult> GetEmployeeById([FromQuery] int Idclient,[FromQuery] int id ,CancellationToken cancellationToken)
@@ -150,6 +169,11 @@ namespace HanaHRM.Controllers
                 ContactNo = ed.ContactNo ?? "",
                 IdMaritalStatus = ed.IdMaritalStatus ?? null,
                 CreatedBy = ed.CreatedBy ?? "",
+                Designation = ed.Designation.DesignationName ?? "",
+                ReligionName = ed.Religion.ReligionName,
+                DepartmentName = ed.Department.DepartName,
+                MaritalStatusName = ed.MaritalStatus.MaritalStatusName,
+                    
                 EmployeeDocuments = ed.EmployeeDocuments.Select(d => new EmployeeDocumentDTO
                 {
                     IdClient = d.IdClient,

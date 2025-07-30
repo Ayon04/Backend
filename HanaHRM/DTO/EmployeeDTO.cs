@@ -15,7 +15,6 @@ namespace HanaHRM.DTO
 
         public string? EmployeeNameBangla { get; set; }
 
-
         public string? FatherName { get; set; }
 
         public string? MotherName { get; set; }
@@ -62,7 +61,10 @@ namespace HanaHRM.DTO
 
         public string? CreatedBy { get; set; }
 
-        
+        public string? DepartmentName { get; set; }
+        public string? Designation { get; set; }
+        public string? ReligionName { get; set; }
+        public string? MaritalStatusName { get; set; }
 
         public List<EmployeeDocumentDTO>EmployeeDocuments { get; set; } = [];
 
