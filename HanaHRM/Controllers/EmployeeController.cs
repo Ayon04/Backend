@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
+using System.Threading;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace HanaHRM.Controllers
 {
@@ -29,6 +30,9 @@ namespace HanaHRM.Controllers
                 }).ToListAsync();
 
             return Ok(empList);
+
+
+
 
         }
 
@@ -144,7 +148,7 @@ namespace HanaHRM.Controllers
                 .AsNoTracking()
                 .Where(e => e.IdClient == Idclient && e.Id == id)
                 .Select(ed => new EmployeeDTO
-            {
+                {
                 Id = ed.Id,
                 EmployeeName = ed.EmployeeName ?? "",
                 EmployeeNameBangla = ed.EmployeeNameBangla ?? "",
@@ -173,7 +177,7 @@ namespace HanaHRM.Controllers
                 ReligionName = ed.Religion.ReligionName,
                 DepartmentName = ed.Department.DepartName,
                 MaritalStatusName = ed.MaritalStatus.MaritalStatusName,
-                    
+                  
                 EmployeeDocuments = ed.EmployeeDocuments.Select(d => new EmployeeDocumentDTO
                 {
                     IdClient = d.IdClient,
@@ -239,9 +243,10 @@ namespace HanaHRM.Controllers
                     SetDate = cert.SetDate ?? null,
                     CreatedBy = cert.CreatedBy ?? null,
                 }).ToList()
-            }).ToListAsync(cancellationToken);
+            }).FirstOrDefaultAsync(cancellationToken);
             return Ok(employeeDTOs);
         }
+
 
         private async Task<byte[]?> ConvertFileToByteArrayAsync(IFormFile? file)
         {
@@ -331,8 +336,6 @@ namespace HanaHRM.Controllers
                     SetDate = DateTime.Now,
 
                 }).ToList(),
-
-
             };
 
 

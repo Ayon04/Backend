@@ -16,22 +16,21 @@ namespace HanaHRM.Controllers
         }
 
         [HttpGet("departmentdropdown")]
-        public async Task<IActionResult> GetDepartmentDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetDepartmentDropDown([FromQuery] int idClient, CancellationToken ct)
         {
-            var data = await _context.Departments.Where(x=>x.IdClient == idClint).Select(d=> new DropDown { 
-                
+            var data = await _context.Departments.Where(x=>x.IdClient == idClient).Select(d=> new DropDown {
+
                 value = d.Id,
                 text = d.DepartName
               
-
             }).ToListAsync(ct);
             return Ok(data);
         }
 
         [HttpGet("designationdropdown")]
-        public async Task<IActionResult> GetDesignationDropDown([FromQuery]  int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetDesignationDropDown([FromQuery]  int idClient,CancellationToken ct)
         {
-            var data = await _context.Designations.Where(x => x.IdClient == idClint).Select(d=>new DropDown { 
+            var data = await _context.Designations.Where(x => x.IdClient == idClient).Select(d=>new DropDown { 
             
                 value = d.Id,
                 text  = d.DesignationName
@@ -42,9 +41,9 @@ namespace HanaHRM.Controllers
 
 
         [HttpGet("educationexaminationsdropdown")]
-        public async Task<IActionResult> GetEducationExaminationsDropDown( [FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetEducationExaminationsDropDown( [FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.EducationExaminations.Where(x => x.IdClient == idClint).Select(ee => new DropDown { 
+            var data = await _context.EducationExaminations.Where(x => x.IdClient == idClient).Select(ee => new DropDown { 
                 
                 value = ee.Id, 
                 text  = ee.ExamName 
@@ -54,9 +53,9 @@ namespace HanaHRM.Controllers
         }
 
         [HttpGet("educationresultsdropdown")]
-        public async Task<IActionResult> GetEducationResultsDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetEducationResultsDropDown([FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.EducationResults.Where(x => x.IdClient == idClint).Select(er => new DropDown { 
+            var data = await _context.EducationResults.Where(x => x.IdClient == idClient).Select(er => new DropDown { 
 
                 value = er.Id, 
                 text  = er.ResultName 
@@ -66,9 +65,9 @@ namespace HanaHRM.Controllers
         }
 
         [HttpGet("employeetypesdropdown")]
-        public async Task<IActionResult> GetEmployeeTypesDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetEmployeeTypesDropDown([FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.EmployeeTypes.Where(x => x.IdClient == idClint).Select(et => new DropDown {
+            var data = await _context.EmployeeTypes.Where(x => x.IdClient == idClient).Select(et => new DropDown {
                 
                 
                 value = et.Id, 
@@ -79,9 +78,9 @@ namespace HanaHRM.Controllers
         }
 
         [HttpGet("gendersdropdown")]
-        public async Task<IActionResult> GetGendersDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetGendersDropDown([FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.Genders.Where(x => x.IdClient == idClint).Select(g => new DropDown { 
+            var data = await _context.Genders.Where(x => x.IdClient == idClient).Select(g => new DropDown { 
                 
                 value = g.Id, 
                 text  = g.GenderName 
@@ -91,16 +90,16 @@ namespace HanaHRM.Controllers
         }
 
         [HttpGet("jobtypesdropdown")]
-        public async Task<IActionResult> GetJobTypesDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetJobTypesDropDown([FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.JobTypes.Where(x => x.IdClient == idClint).Select(j => new DropDown { value = j.Id, text = j.JobTypeName }).ToListAsync(ct);
+            var data = await _context.JobTypes.Where(x => x.IdClient == idClient).Select(j => new DropDown { value = j.Id, text = j.JobTypeName }).ToListAsync(ct);
             return Ok(data);
         }
 
         [HttpGet("maritalstatusesdropdown")]
-        public async Task<IActionResult> GetMaritalStatusesDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetMaritalStatusesDropDown([FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.MaritalStatuses.Where(x => x.IdClient == idClint).Select(m => new DropDown { 
+            var data = await _context.MaritalStatuses.Where(x => x.IdClient == idClient).Select(m => new DropDown { 
 
                 value = m.Id, 
                 text  = m.MaritalStatusName 
@@ -110,9 +109,9 @@ namespace HanaHRM.Controllers
         }
 
         [HttpGet("relationshipdropdown")]
-        public async Task<IActionResult> GetRelationshipDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetRelationshipDropDown([FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.Relationships.Where(x => x.IdClient == idClint).Select(r => new DropDown {
+            var data = await _context.Relationships.Where(x => x.IdClient == idClient).Select(r => new DropDown {
                 
                 value = r.Id, 
                 text  = r.RelationName 
@@ -122,9 +121,9 @@ namespace HanaHRM.Controllers
         }
 
         [HttpGet("religionsdropdown")]
-        public async Task<IActionResult> GetReligionsDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetReligionsDropDown([FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.Religions.Where(x => x.IdClient == idClint).Select(rg => new DropDown { 
+            var data = await _context.Religions.Where(x => x.IdClient == idClient).Select(rg => new DropDown { 
                 
                 value = rg.Id, 
                 text  = rg.ReligionName    
@@ -134,9 +133,9 @@ namespace HanaHRM.Controllers
         }
 
         [HttpGet("sectionsdropdown")]
-        public async Task<IActionResult> GetSectionsDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetSectionsDropDown([FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.Sections.Where(x => x.IdClient == idClint).Select(s => new DropDown { 
+            var data = await _context.Sections.Where(x => x.IdClient == idClient).Select(s => new DropDown { 
                 
                 value = s.Id,
                 text  = s.SectionName 
@@ -146,9 +145,9 @@ namespace HanaHRM.Controllers
         }
 
         [HttpGet("weekoffsdropdown")]
-        public async Task<IActionResult> GetWeekOffsDropDown([FromQuery] int idClint,CancellationToken ct)
+        public async Task<IActionResult> GetWeekOffsDropDown([FromQuery] int idClient,CancellationToken ct)
         {
-            var data = await _context.WeekOffs.Where(x => x.IdClient == idClint).Select(w => new DropDown { 
+            var data = await _context.WeekOffs.Where(x => x.IdClient == idClient).Select(w => new DropDown { 
                 
                value = w.Id, 
                text  = w.WeekOffDay 
