@@ -156,5 +156,44 @@ namespace HanaHRM.Controllers
             return Ok(data);
         }
 
+        [HttpGet("educationlevel")]
+        public async Task<IActionResult> GetEducationLevelDropDown([FromQuery] int idClient, CancellationToken ct)
+        {
+            var data = await _context.EducationLevels.Where(x => x.IdClient == idClient).Select(w => new DropDown
+            {
+
+                value = w.Id,
+                text = w.EducationLevelName
+
+            }).ToListAsync(ct);
+            return Ok(data);
+        }
+
+        [HttpGet("educationexamination")]
+        public async Task<IActionResult> GetEducationExamDropDown([FromQuery] int idClient, CancellationToken ct)
+        {
+            var data = await _context.EducationExaminations.Where(x => x.IdClient == idClient).Select(w => new DropDown
+            {
+
+                value = w.Id,
+                text = w.ExamName
+
+            }).ToListAsync(ct);
+            return Ok(data);
+        }
+
+        [HttpGet("educationresult")]
+        public async Task<IActionResult> GetEducationResult([FromQuery] int idClient, CancellationToken ct)
+        {
+            var data = await _context.EducationResults.Where(x => x.IdClient == idClient).Select(w => new DropDown
+            {
+
+                value = w.Id,
+                text = w.ResultName
+
+            }).ToListAsync(ct);
+            return Ok(data);
+        }
+
     }
 }
